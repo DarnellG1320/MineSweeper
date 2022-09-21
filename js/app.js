@@ -29,6 +29,28 @@ var gBoard;
 
 
 
+var inputKey = document.getElementById('inputKey');
+var btnInsert = document.getElementById('btnInsert');
+var isNamed = document.getElementById('isNamed');
+
+var key = localStorage.getItem('Name', key);
+
+isNamed.innerHTML += `${'Player Name'}: ${key}`;
+// bestScore.innerHTML += `${'Best Score'}: ${scoreSum}`;
+
+btnInsert.onclick = function () {
+  var key = inputKey.value;
+
+  if (key) {
+    localStorage.setItem('Name', key);
+  }
+  isNamed.innerHTML = null;
+  isNamed.innerHTML += `${'Player Name'}: ${key}`;
+  console.log(localStorage);
+};
+
+
+
 
 function changeFunc() {
   var selectBox = document.getElementById("selectBox");
@@ -366,30 +388,30 @@ function updateScore(score) {
 }
 
 
-function handleKey(event) {
-  console.log('event: ', event);
-  var i = gGamerPos.i;
-  var j = gGamerPos.j;
-  // my wall/floor pos
-  // board[0][4].type = FLOOR;
-  //   board[4][0].type = FLOOR;
-  //   board[9][6].type = FLOOR;
-  //   board[4][11].type = FLOOR;
+// function handleKey(event) {
+//   console.log('event: ', event);
+//   var i = gGamerPos.i;
+//   var j = gGamerPos.j;
+//   // my wall/floor pos
+//   // board[0][4].type = FLOOR;
+//   //   board[4][0].type = FLOOR;
+//   //   board[9][6].type = FLOOR;
+//   //   board[4][11].type = FLOOR;
 
-  switch (event.key) {
-    case 'ArrowLeft':
-      moveTo(i, j - 1);
-      break;
-    case 'ArrowRight':
-      moveTo(i, j + 1);
-      break;
-    case 'ArrowUp':
-      moveTo(i - 1, j);
-      break;
-    case 'ArrowDown':
-      moveTo(i + 1, j);
-      break;
-  }
-}
+//   switch (event.key) {
+//     case 'ArrowLeft':
+//       moveTo(i, j - 1);
+//       break;
+//     case 'ArrowRight':
+//       moveTo(i, j + 1);
+//       break;
+//     case 'ArrowUp':
+//       moveTo(i - 1, j);
+//       break;
+//     case 'ArrowDown':
+//       moveTo(i + 1, j);
+//       break;
+//   }
+// }
 
 

@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onkeyup="handleKey(event)" onload="initGame()">
+<body onload="initGame()">
     <div class="header">
         <h1>MineSweeper</h1>
-      
+
     </div>
     <table>
         <tbody class="board"></tbody>
@@ -20,27 +20,29 @@
     <label for="howhard-select">Select Difficultly</label>
 
     <select id="selectBox" onchange="changeFunc();">
-    <option value="">--Please Select Difficultly--</option>
-    <option value="4" >Easy</option>
-    <option value="8">Medium</option>
-    <option value="12">Pro</option>
-    
-</select>
+        <option value="">--Please Select Difficultly--</option>
+        <option value="4">Easy</option>
+        <option value="8">Medium</option>
+        <option value="12">Pro</option>
+
+    </select>
 
     <button class="rst" onclick="restartGame(this)">Restart</button>
     <button class="start" onclick="startGame(this)">Start</button>
     <h2>Score: <span>0</span></h2>
 
     <div class="timePlayed">
-                
-                
+
+
         <div class="container"> </div>
         <span class=""></span>
-        
-        
+
     </div>
-    
-    
+    <input class="inputKey" id="inputKey" type="text" placeholder="Enter Name...">
+    <button type="button" class="btnInsert" id="btnInsert">Submit</button>
+    <div class="isNamed" id="isNamed"> </div>
+    <div class="bestScore" id="bestScore"></div>
+
     <script src="js/util.js"></script>
     <script src="js/app.js"></script>
 </body>
