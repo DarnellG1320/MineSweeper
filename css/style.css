@@ -36,6 +36,13 @@ hr{
     margin-bottom: 70px;
 }
 
+h2 {
+  position: absolute;
+  bottom: 320px;
+  font-family: sans-serif;
+  left: 12px;
+}
+
 table {
     position: absolute;
     max-width: 70%;

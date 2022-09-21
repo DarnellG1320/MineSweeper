@@ -23,6 +23,7 @@ var gIntervalId = null;
 var gIntervalId2 = null;
 var gSelectedElCell;
 // Model:
+var gGameScore = 0
 var gBoard;
 var gGamerPos;
 var gIsLost = false
@@ -65,7 +66,9 @@ function startGame() {
 }
 
 function restartGame() {
+  gGameScore = 0
   initGame();
+  updateScore(0)
   
   
 }
@@ -76,7 +79,7 @@ function restartGame() {
 
 function initGame(SIZE) {
   gIsLost = false
-  gGamerPos = { i: 2, j: 9 };
+ 
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
   renderBoard(gBoard);
@@ -232,8 +235,10 @@ function cellClicked(elCell, event, i, j) {
 
 
 
-  if (gBoard[i][j].gameElement !== BOMB) elCell.innerText = BOMBCount;
-
+  if (gBoard[i][j].gameElement !== BOMB){
+     elCell.innerText = BOMBCount;
+     updateScore(1)
+  }
   for (let key = 0; key < SIZE; key++) {
     for (let p = 0; p < SIZE; p++) {
       if (gBoard[i][j].gameElement === BOMB && gBoard[i][j].bombCount === 0)
@@ -357,6 +362,11 @@ function renderCell(location, value) {
   var cellSelector = '.' + getClassName(location);
   var elCell = document.querySelector(cellSelector);
   elCell.innerHTML = value;
+}
+
+function updateScore(score) {
+  gGameScore += score;
+  document.querySelector('h2 span').innerText = gGameScore;
 }
 
 
