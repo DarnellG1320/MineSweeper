@@ -1,2 +1,2 @@
 # MineSweeper
-an almost function version of Minesweeper
+an almost functional version of Minesweeper
