@@ -25,6 +25,7 @@ var gSelectedElCell;
 // Model:
 var gGameScore = 0
 var gisGameLost = false
+var gGameIsPlaying = false
 var gBoard;
 
 
@@ -239,8 +240,10 @@ function hideTiles(board) {
 // };
 
 function cellClicked(elCell, event, i, j) {
+  if (gGameIsPlaying === false) {
   startTimer()
-  if (gisGameLost) return
+  gGameIsPlaying = true
+  } else if (gisGameLost) return
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   if (event.type === 'click') var BOMBCount = countBombsAround(gBoard, i, j);
   // var zeroCount = countZerosAround(gBoard, i, j)
@@ -301,6 +304,7 @@ function cellClicked(elCell, event, i, j) {
     
     console.log('Game Over');
     gisGameLost = true
+    gGameIsPlaying = false
   }
 
   // console.log('elCell.id: ', elCell.id)

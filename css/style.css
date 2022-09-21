@@ -131,11 +131,11 @@ transition: 65ms;
 
 .timePlayed {
   position: absolute;
-  bottom: 270px;
+  bottom: 200px;
   
   font-family: sans-serif;
   left: 12px;
-   width: 150px;
+   width: 200px;
     height: 50px;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -157,7 +157,19 @@ transition: 65ms;
 
 }
 
+select {
+  font-family: sans-serif;
+  
+}
+
+option {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
 .isNamed {
+  font-family: sans-serif;
+  font-weight: bold;
   position: absolute;
   bottom: 275px;
   left: 12px;
