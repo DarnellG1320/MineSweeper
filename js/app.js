@@ -24,31 +24,10 @@ var gIntervalId2 = null;
 var gSelectedElCell;
 // Model:
 var gGameScore = 0
+var gisGameLost = false
 var gBoard;
-var gGamerPos;
-var gIsLost = false
 
 
-// function createBombs(board) {
-//   gGhosts = []
-//   for(var i = 0; i < 3; i++){
-//       createGhost(board)
-//   }
-//   gGame.ghostsInterval = setInterval(moveGhosts, 1000)
-// }
-
-// function createGhost(board) {
-//   const ghost = {
-//       location: {
-//           i: 3,
-//           j: 3
-//       },
-//       currCellContent: FOOD,
-//       color: getRandomColor(),
-//   }
-//   gGhosts.push(ghost)
-//   board[ghost.location.i][ghost.location.j] = GHOST
-// }
 
 
 function changeFunc() {
@@ -61,8 +40,7 @@ function changeFunc() {
 
 function startGame() {
   initGame();
-  // gIntervalId = setInterval(addRandomBOMB, 3000);
-  // gIntervalId2 = setInterval(addRandomGlue, 5000);
+ 
 }
 
 function restartGame() {
@@ -78,7 +56,7 @@ function restartGame() {
 // }
 
 function initGame(SIZE) {
-  gIsLost = false
+  gisGameLost = false
  
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
@@ -100,6 +78,10 @@ function getEmptyPos() {
   }
   return possibleCells;
 }
+
+
+
+
 
 function buildBoard() {
   clearInterval(gIntervalId);
@@ -130,12 +112,6 @@ function buildBoard() {
 
   // }
 
-  // board[4][3].type = MINE;
-  // board[4][8].type = FLOOR;
-
-  // TODO: Place the gamer and two BOMBs
-  // board[gGamerPos.i][gGamerPos.j].gameElement = GAMER;
-
   board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
   board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
   board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
@@ -152,6 +128,7 @@ function buildBoard() {
 }
 
 function renderBoard(board) {
+  
   var elBoard = document.querySelector('.board');
   var strHTML = '';
 
@@ -198,6 +175,24 @@ function renderBoard(board) {
   elBoard.innerHTML = strHTML;
 }
 
+function createBombs(totalBOMBAmount){
+
+  for (let i = 0; i < gTotalBOMBCount; i++) {
+    for (let j = 0; j < gTotalBOMBCount; j++) {
+      
+      gBoard[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+    }
+    
+  }
+  console.log(gBoard);
+
+}
+
+
+
+
+
+
 function hideTiles(board) {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[0].length; j++) {
@@ -222,7 +217,8 @@ function hideTiles(board) {
 // };
 
 function cellClicked(elCell, event, i, j) {
-  if (gIsLost) return
+  startTimer()
+  if (gisGameLost) return
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   if (event.type === 'click') var BOMBCount = countBombsAround(gBoard, i, j);
   // var zeroCount = countZerosAround(gBoard, i, j)
@@ -282,7 +278,7 @@ function cellClicked(elCell, event, i, j) {
     //********** MINE HIT EVENTS *********
     
     console.log('Game Over');
-    gIsLost = true
+    gisGameLost = true
   }
 
   // console.log('elCell.id: ', elCell.id)
