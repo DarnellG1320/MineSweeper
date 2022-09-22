@@ -21,6 +21,27 @@
   }
 }
 
+@keyframes MineSweepBGC {
+  0% ,
+   70%,
+  60%,
+  20.1%,
+  /* 100%, */
+  65.1%,
+  60%,
+  /* 90.1%, */
+  /* 92%, */
+  10% {
+    color: (67, 31, 139);
+    text-shadow: 8px 1.5px 1.5px rgb(39, 0, 94),
+    12px 1.5px 1.5px rgb(39, 0, 94), 16px 1.5px 1.5px rgb(39, 0, 94);;
+  }
+  100% {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px rgb(255, 255, 255);
+  }
+}
+
 
 
 @keyframes animateTable {
@@ -140,16 +161,17 @@ h1 {
 /* score */
 h2 {
   position: absolute;
-  top: 102px;
+  top: 126px;
   font-family: 'concert one', cursive;
   left: 270px;
-  -webkit-box-reflect: below 1px linear-gradient(transparent, white);
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   animation-direction: alternate;
 
-  animation: scoreFrames 4s linear infinite;
+  animation: MineSweepBGC 4s linear infinite;
   animation-direction: alternate;
 
 }
+
 
 
 table {
@@ -229,7 +251,7 @@ td:hover {
   border-color: aliceblue;
   font-weight: bold;
   font-size: 1.4em;
-  animation: MineSweep 5s linear infinite;
+  animation: MineSweepBGC 5s linear infinite;
   animation-direction: alternate;
 
 }
@@ -293,7 +315,7 @@ label {
   margin-left: 14px;
   font-weight: bold;
   font-family: 'concert one', cursive;
-  animation: MineSweep 5s linear infinite;
+  animation: MineSweepBGC 5s linear infinite;
   animation-direction: alternate;
 
 
