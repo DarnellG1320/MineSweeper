@@ -12,7 +12,6 @@ const TILE_STATUSES = {
   MARKED: 'marked',
 };
 
-var gCollectedBOMBCount = 0;
 var gTotalTilesCount = 0;
 var gCellClicked = false;
 var gIsFirstClick = true;
@@ -24,13 +23,9 @@ var scoreToWin = 0;
 
 var gTotalBOMBCount = 2;
 var SIZE = 8;
-
 var gIntervalId = null;
-
 var gSelectedElCell;
-
 var gIsRightClick = false;
-
 var gGameScore = 0;
 var gBoard;
 
