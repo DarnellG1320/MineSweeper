@@ -42,13 +42,12 @@ window.oncontextmenu = function () {
 };
 
 function rightClicked() {
-  gIsRightClick = !gIsRightClick;
+  // gIsRightClick = !gIsRightClick;
   alert('Yo');
   // cellClicked()
 }
 
 //**** Local Storage *****
-// function localStorage()
 
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 
@@ -124,14 +123,10 @@ function buildBoard() {
     for (var j = 0; j < board[i].length; j++) {
       board[i][j] = { i, j, type: TILE, gameElement: null, bombCount: null };
       gTotalTilesCount++;
-
-      // var currCellBombsCount = countBombsAround(board, i, j)
-
-      // board[i][j].bombCount = currCellBombsCount
     }
   }
 
-  //********* MINE ADDER******
+  //********* MINE ADDER ******
 
   var totalBOMBCount = convertSizeToBombAmt(SIZE);
 
@@ -160,7 +155,6 @@ function convertSizeToBombAmt(SIZE) {
   } else if (SIZE === 16) {
     SIZE = 64;
   }
-
   return SIZE;
 }
 
@@ -180,13 +174,7 @@ function renderBoard(board) {
       currCell.status = 'HIDDEN';
 
       if (currCell.status === 'HIDDEN')
-        if (currCell.type === FLOOR)
-          //  var elCurrCell = document.querySelector(".cell")
-          //  console.log('elCurrCell: ', elCurrCell);
-          //  elCurrCell.classlist.remove
-          // currCell.dataset.status = TILE_STATUSES.HIDDEN;
-
-          cellClass += ' floor';
+        if (currCell.type === FLOOR) cellClass += ' floor';
         else if (currCell.type === TILE) cellClass += ' wall';
       //prettier-ignore
       strHTML += `\t<td data-type="status" class="cell ${cellClass}" 
@@ -211,7 +199,6 @@ function renderBoard(board) {
 }
 
 function showBOMBS(board) {
-  // var elBoard = document.querySelector('.board');
   var currCell;
 
   for (var i = 0; i < SIZE; i++) {
@@ -222,52 +209,34 @@ function showBOMBS(board) {
         currCell.gameElement = '💥';
         console.log('currCell.gameElement: ', currCell.gameElement);
       }
-
-      // var currCellBombsCount = countBombsAround(board, i, j)
-
-      // board[i][j].bombCount = currCellBombsCount
     }
   }
 }
-//   var totalBOMBCount = convertSizeToBombAmt(SIZE);
-
-//   for (var k = 0; k < totalBOMBCount; k++) {
-//     board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-//   }
-// }
 
 function showZeros(board) {
-  // var elBoard = document.querySelector('.board');
   var currCell;
 
   for (var i = 0; i < SIZE; i++) {
     for (var j = 0; j < SIZE; j++) {
       currCell = board[i][j];
 
-      // console.log('currCell.bombCount: ', currCell.bombCount);
       if (currCell.bombCount === 0) {
         currCell.gameElement += '🌺';
-        // console.log('currCell.gameElement: ', currCell.gameElement);
       }
-
-      // var currCellBombsCount = countBombsAround(board, i, j)
-
-      // board[i][j].bombCount = currCellBombsCount
     }
-    // renderBoard(gBoard)
   }
 }
 function checkWin() {
   if (gGameScore !== gTotalTilesCount) {
-    console.log('gTotalTilesCount: ', gTotalTilesCount);
-    console.log('gGameScore: ', gGameScore);
+    // console.log('gTotalTilesCount: ', gTotalTilesCount);
+    // console.log('gGameScore: ', gGameScore);
     winOrLose(gGameScore);
   }
 }
 
 function winOrLose() {
   var storedBestScore = localStorage.getItem('Best Score', gBestScore);
-  console.log('storedBestScore: ', storedBestScore);
+  // console.log('storedBestScore: ', storedBestScore);
   if (storedBestScore > gGameScore) return;
   else localStorage.setItem('Best Score', gGameScore);
   bestScore.innerHTML = null;
@@ -279,15 +248,7 @@ function hideTiles(board) {
     for (var j = 0; j < board[0].length; j++) {
       var currCell = board[i][j];
 
-      // document.querySelector("cell ").setAttribute('data', "icon: 'base2.gif', url: 'output.htm', target: 'AccessPage', output: '1'");
-
       if (currCell.status === 'hidden') return;
-
-      // var elCurrCell = document.querySelector('.cell');
-      // console.log('elCurrCell: ', elCurrCell);
-      // console.log('elCurrCell: ', elCurrCell);
-      //  elCurrCell.classlist.remove
-      // currCell.dataset.status = TILE_STATUSES.HIDDEN;
     }
   }
 }
@@ -312,14 +273,7 @@ function cellClicked(elCell, event, i, j) {
   } else if (gisGameLost) return;
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   if (event.type === 'click') var BOMBCount = countBombsAround(gBoard, i, j);
-  // var zeroCount = countZerosAround(gBoard, i, j)
-  // console.log('zeroCount: ', zeroCount);
-  // while (!BOMBCount) {
-  //   prompt('Hello')
-  // document.querySelectorAll('td')
-  // console.log('document: ', document);
-  // return
-  // }
+  
 
   if (gBoard[i][j].gameElement !== BOMB);
   {

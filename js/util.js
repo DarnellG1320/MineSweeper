@@ -29,20 +29,12 @@ function getClassName(location) {
   return cellClass;
 }
 
-function get2NdClassName(location) {
-  var cellClass = 'cell-' + location.i + '-' + location.j;
-  return cellClass;
-}
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function showBestScore(){
-
-}
 
 function startTimer() {
   clearInterval(gIntervalId);
