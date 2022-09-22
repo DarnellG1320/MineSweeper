@@ -51,7 +51,6 @@ function rightClicked() {
 
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 
-console.log('storedBestScore: ', storedBestScore);
 var bestScore = document.getElementById('bestScore');
 
 bestScore.innerHTML = null;
@@ -92,7 +91,6 @@ function restartGame() {
 
 function initGame(SIZE = 12) {
   var lastBestScore = localStorage.getItem('Best Score');
-  console.log('lastBestScore: ', lastBestScore);
   document.querySelector('h2 span').innerText = lastBestScore;
   console.log('localStorage: ', localStorage);
 
@@ -181,7 +179,6 @@ function renderBoard(board) {
       onclick="cellClicked(this, event, ${i}, ${j})" >`;
 
       if (currCell.gameElement === BOMB && gCellClicked) {
-        console.log('Bomb Clicked');
       } else if (currCell.gameElement === BOMB) {
         strHTML += BOMB;
       } else if (currCell.gameElement === '💥' && gisGameLost) {
@@ -273,7 +270,6 @@ function cellClicked(elCell, event, i, j) {
   } else if (gisGameLost) return;
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   if (event.type === 'click') var BOMBCount = countBombsAround(gBoard, i, j);
-  
 
   if (gBoard[i][j].gameElement !== BOMB);
   {
