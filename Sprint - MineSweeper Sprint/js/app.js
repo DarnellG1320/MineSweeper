@@ -200,7 +200,6 @@ function showBOMBS(board) {
 
       if (currCell.gameElement === ' ') {
         currCell.gameElement = '💥';
-        console.log('currCell.gameElement: ', currCell.gameElement);
       }
     }
   }
