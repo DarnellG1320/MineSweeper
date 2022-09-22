@@ -171,23 +171,18 @@ h2 {
   animation-direction: alternate;
 }
 
-
 .livesCount {
   position: absolute;
   top: 180px;
   font-family: sans-serif;
-  left: 414px;
+  left: 380px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   animation-direction: alternate;
-
   animation: MineSweepBGC 4s linear infinite;
   animation-direction: alternate;
 }
 
-
-
 table {
-  
   position: absolute;
   /* max-width: 70%; */
   min-width: 460px;
@@ -202,7 +197,7 @@ table {
   margin-top: 20px;
   /* margin-left: 12px; */
   margin-bottom: 20px;
-top: 180px;
+  top: 180px;
   /* bottom: 450px; */
   animation: animateTable 1.6s linear infinite;
   animation-direction: alternate;
@@ -282,7 +277,7 @@ button {
   font-size: 1.2em;
 
   /* float: left; */
-top: 673px;
+  top: 673px;
   /* bottom: 300px; */
   animation: animate 2s linear infinite;
   animation-direction: alternate;
@@ -325,9 +320,7 @@ button:hover {
   font-weight: bold;
   position: absolute;
   top: 610px;
-  left: 25px
-  
-  
+  left: 25px;
 }
 
 label {
@@ -353,8 +346,6 @@ option {
   font-family: 'concert one', cursive;
   font-weight: bold;
 }
-
-
 
 .mark {
   background-color: #fff;
