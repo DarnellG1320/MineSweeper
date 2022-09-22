@@ -49,7 +49,7 @@ function rightClicked() {
 
 //**** Local Storage *****
 // function localStorage()
-localStorage.setItem('Best Score', gGameScore);
+
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 
 console.log('storedBestScore: ', storedBestScore);

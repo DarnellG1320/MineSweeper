@@ -185,7 +185,7 @@ h2 {
 table {
   position: absolute;
   /* max-width: 70%; */
-  min-width: 460px;
+  min-width: 450px;
   height: 400px;
   padding: 4px;
   border-radius: 6px;
