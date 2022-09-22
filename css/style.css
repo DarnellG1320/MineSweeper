@@ -159,6 +159,18 @@ h2 {
   animation-direction: alternate;
 }
 
+.bestScore {
+  position: absolute;
+  top: 126px;
+  font-family: 'concert one', cursive;
+  left: 270px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
+  animation-direction: alternate;
+
+  animation: MineSweepBGC 4s linear infinite;
+  animation-direction: alternate;
+}
+
 table {
   position: absolute;
   max-width: 70%;
@@ -309,8 +321,8 @@ label {
   left: 212px;
   font-weight: bold;
   font-family: 'concert one', cursive;
-  animation: MineSweepBGC 8s linear infinite;
-  animation-direction: alternate;
+  /* animation: MineSweepBGC 8s linear infinite;
+  animation-direction: alternate; */
 }
 
 select {

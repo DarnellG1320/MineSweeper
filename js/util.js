@@ -10,6 +10,19 @@ function createMat(ROWS, COLS) {
   return mat;
 }
 
+// function getEmptyPos() {
+//   var possibleCells = [];
+//   for (var i = 0; i < gBoard.length; i++) {
+//     for (var j = 0; j < gBoard[i].length; j++) {
+//       var currCell = gBoard[i][j];
+//       if (currCell.type !== WALL && !currCell.gameElement) {
+//         possibleCells.push({ i, j });
+//       }
+//     }
+//   }
+//   return possibleCells;
+// }
+
 // Returns the class name for a specific cell
 function getClassName(location) {
   var cellClass = 'cell-' + location.i + '-' + location.j;
@@ -42,4 +55,76 @@ function startTimer() {
       elTime.innerText += secs;
     }
   }, 10);
+}
+
+
+function countZerosAround(board, rowIdx, colIdx) {
+  var BOMBCount = 0;
+
+  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+    if (i < 0 || i >= SIZE) continue;
+
+    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+      if (j < 0 || j >= SIZE) continue;
+      if (i === rowIdx && j === colIdx) continue;
+
+      var currCell = board[i][j];
+
+      console.log('currCell: ', currCell);
+      if (currCell.gameElement !== BOMB) BOMBCount++;
+    }
+  }
+  return BOMBCount;
+}
+
+// Convert a location object {i, j} to a selector and render a value in that element
+function renderCell(location, value) {
+  var cellSelector = '.' + getClassName(location);
+  var elCell = document.querySelector(cellSelector);
+  elCell.innerHTML = value;
+}
+
+function updateScore(score) {
+  gGameScore += score;
+  document.querySelector('h2 span').innerText = gGameScore;
+}
+
+function countBombsAround(board, rowIdx, colIdx) {
+  var BOMBCount = 0;
+
+  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+    if (i < 0 || i >= SIZE) continue;
+
+    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+      if (j < 0 || j >= SIZE) continue;
+      if (i === rowIdx && j === colIdx) continue;
+
+      var currCell = board[i][j];
+      if (currCell.gameElement === BOMB) BOMBCount++;
+    }
+  }
+  return BOMBCount;
+}
+
+function markCells(coords) {
+  // query select them one by one and add mark
+  for (var i = 0; i < coords.length; i++) {
+    // #cell-3-2
+    var selector = getSelector(coords[i]);
+    console.log('selector: ', selector);
+    var elCell = document.querySelector(selector);
+    elCell.classList.add('mark');
+  }
+}
+
+function getSelector(coord) {
+  return `#cell-${coord.i}-${coord.j}`;
+}
+
+function getCellCoord(strCellId) {
+  var coord = {};
+  var parts = strCellId.split('-');
+  coord.i = +parts[1];
+  coord.j = +parts[2];
+  return coord;
 }

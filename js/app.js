@@ -1,6 +1,6 @@
 'use strict';
 
-const WALL = 'WALL';
+const TILE = 'WALL';
 const FLOOR = 'FLOOR';
 
 var BOMB = ' ';
@@ -14,27 +14,48 @@ const TILE_STATUSES = {
 
 var gCollectedBOMBCount = 0;
 var gCellClicked = false;
+var gIsFirstClick = true;
 
 var gTotalBOMBCount = 2;
 var SIZE = 4;
 
 var gIntervalId = null;
-// var gIntervalId2 = null;
+
 var gSelectedElCell;
+
+var gIsRightClick = false;
 
 var gGameScore = 0;
 var gisGameLost = false;
 var gGameIsPlaying = false;
 var gBoard;
+
+//  ****** right click events *****
+
+window.oncontextmenu = function () {
+  rightClicked();
+  return false; // cancel default menu
+};
+
+function rightClicked() {
+  gIsRightClick = !gIsRightClick;
+  alert('Yo');
+  // cellClicked()
+}
+
+//**** Local Storage *****
+
 var scoreSum = localStorage.getItem('Best Score', scoreSum);
+var key = localStorage.getItem('Name', key);
+
+// **** DOM name field and input field ****
+
 var inputKey = document.getElementById('inputKey');
 var btnInsert = document.getElementById('btnInsert');
 var isNamed = document.getElementById('isNamed');
 
-var key = localStorage.getItem('Name', key);
-
 isNamed.innerHTML += `${'Player Name'}: ${key}`;
-// bestScore.innerHTML += `${'Best Score'}: ${scoreSum}`;
+bestScore.innerHTML += `${'Best Score'}: ${scoreSum}`;
 
 btnInsert.onclick = function () {
   var key = inputKey.value;
@@ -67,6 +88,7 @@ function restartGame() {
 function initGame(SIZE = 12) {
   clearInterval(gIntervalId);
   gisGameLost = false;
+  var gIsFirstClick = true;
 
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
@@ -75,33 +97,18 @@ function initGame(SIZE = 12) {
   clearInterval(gIntervalId);
 }
 
-function getEmptyPos() {
-  var possibleCells = [];
-  for (var i = 0; i < gBoard.length; i++) {
-    for (var j = 0; j < gBoard[i].length; j++) {
-      var currCell = gBoard[i][j];
-      if (currCell.type !== WALL && !currCell.gameElement) {
-        possibleCells.push({ i, j });
-      }
-    }
-  }
-  return possibleCells;
-}
-
 function buildBoard() {
   clearInterval(gIntervalId);
   var board = [];
 
-  // TODO: Create the Matrix 10 * 12
+  // Create the Matrix
   board = createMat(SIZE, SIZE);
 
-  // TODO: Put FLOOR everywhere and WALL at edges
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
-      board[i][j] = { i, j, type: FLOOR, gameElement: null, bombCount: null };
+      board[i][j] = { i, j, type: TILE, gameElement: null, bombCount: null };
       //
 
-      board[i][j].type = WALL;
       // var currCellBombsCount = countBombsAround(board, i, j)
 
       // board[i][j].bombCount = currCellBombsCount
@@ -151,7 +158,7 @@ function renderBoard(board) {
 
       var cellClass = getClassName({ i, j });
 
-      // **** if cellClicked - remove status hidden
+      // if cellClicked - remove status hidden
       currCell.status = 'HIDDEN';
 
       if (currCell.status === 'HIDDEN')
@@ -162,13 +169,10 @@ function renderBoard(board) {
           // currCell.dataset.status = TILE_STATUSES.HIDDEN;
 
           cellClass += ' floor';
-        else if (currCell.type === WALL) cellClass += ' wall';
+        else if (currCell.type === TILE) cellClass += ' wall';
       //prettier-ignore
       strHTML += `\t<td data-type="status" class="cell ${cellClass}" 
       onclick="cellClicked(this, event, ${i}, ${j})">`;
-
-      // if (currCell.gameElement === GAMER) {
-      //   strHTML += GAMER_IMG;
 
       if (currCell.gameElement === BOMB && gCellClicked) {
         console.log('Bomb Clicked');
@@ -198,7 +202,6 @@ function showBOMBS(board) {
         console.log('currCell.gameElement: ', currCell.gameElement);
       }
 
-      board[i][j].type = WALL;
       // var currCellBombsCount = countBombsAround(board, i, j)
 
       // board[i][j].bombCount = currCellBombsCount
@@ -212,6 +215,16 @@ function showBOMBS(board) {
   for (var k = 0; k < totalBOMBCount; k++) {
     board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
   }
+}
+
+function checkWin() {
+  winEvents();
+}
+
+function winEvents() {
+  localStorage.setItem('Best Score', XXXX);
+  bestScore.innerHTML = null;
+  bestScore.innerHTML += `${'Best Score'}: ${sumTime}`;
 }
 
 function hideTiles(board) {
@@ -232,11 +245,6 @@ function hideTiles(board) {
   }
 }
 
-// window.oncontextmenu = function () {
-//   showCustomMenu();
-//   return false; // cancel default menu
-// };
-
 function cellClicked(elCell, event, i, j) {
   if (!gGameIsPlaying) {
     startTimer();
@@ -251,8 +259,8 @@ function cellClicked(elCell, event, i, j) {
   // console.log('document: ', document);
   // return
   // }
-
-  if (gBoard[i][j].gameElement !== BOMB) {
+ 
+ if (gBoard[i][j].gameElement !== BOMB); {
     elCell.innerText = BOMBCount;
     updateScore(1);
   }
@@ -275,13 +283,13 @@ function cellClicked(elCell, event, i, j) {
   elCell.classList.add('selected');
   gSelectedElCell = elCell;
   console.log('gSelectedElCell: ', gSelectedElCell);
-  if (gBoard[i][j].gameElement === BOMB) {
+  if (gIsFirstClick && gBoard[i][j].gameElement === BOMB) {
+    elCell.innerText = 'Lucky';
+    console.log('Yo');
+    gIsFirstClick = false;
+  } else if (gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = '💥';
-
-    // buildBoard(gBoard)
-    // renderBoard(gBoard)
-
-    // ***** NEED TO SHOW BOMB
+    // ***** NEED TO SHOW BOMBS
     //********** BOMB HIT EVENTS *********
 
     console.log('Game Over');
@@ -289,109 +297,7 @@ function cellClicked(elCell, event, i, j) {
     gGameIsPlaying = !gGameIsPlaying;
     clearInterval(gIntervalId);
   }
-
-  // console.log('elCell.id: ', elCell.id)
   var cellCoord = getCellCoord(elCell.id);
-  // console.log('cellCoord: ', cellCoord)
-  // var piece = gBoard[cellCoord.i][cellCoord.j];
   markCells(cellCoord);
   return true;
-  // markTile()
 }
-
-function markCells(coords) {
-  // TODO: query select them one by one and add mark
-  for (var i = 0; i < coords.length; i++) {
-    // #cell-3-2
-    var selector = getSelector(coords[i]);
-    console.log('selector: ', selector);
-    var elCell = document.querySelector(selector);
-    elCell.classList.add('mark');
-  }
-}
-
-function getSelector(coord) {
-  return `#cell-${coord.i}-${coord.j}`;
-}
-
-function getCellCoord(strCellId) {
-  var coord = {};
-  var parts = strCellId.split('-');
-  coord.i = +parts[1];
-  coord.j = +parts[2];
-  return coord;
-}
-
-function countBombsAround(board, rowIdx, colIdx) {
-  var BOMBCount = 0;
-
-  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-    if (i < 0 || i >= SIZE) continue;
-
-    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-      if (j < 0 || j >= SIZE) continue;
-      if (i === rowIdx && j === colIdx) continue;
-
-      var currCell = board[i][j];
-      if (currCell.gameElement === BOMB) BOMBCount++;
-    }
-  }
-  return BOMBCount;
-}
-
-function countZerosAround(board, rowIdx, colIdx) {
-  var BOMBCount = 0;
-
-  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-    if (i < 0 || i >= SIZE) continue;
-
-    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-      if (j < 0 || j >= SIZE) continue;
-      if (i === rowIdx && j === colIdx) continue;
-
-      var currCell = board[i][j];
-
-      console.log('currCell: ', currCell);
-      if (currCell.gameElement !== BOMB) BOMBCount++;
-    }
-  }
-  return BOMBCount;
-}
-
-// Convert a location object {i, j} to a selector and render a value in that element
-function renderCell(location, value) {
-  var cellSelector = '.' + getClassName(location);
-  var elCell = document.querySelector(cellSelector);
-  elCell.innerHTML = value;
-}
-
-function updateScore(score) {
-  gGameScore += score;
-  document.querySelector('h2 span').innerText = gGameScore;
-}
-
-// function handleKey(event) {
-//   console.log('event: ', event);
-//   var i = gGamerPos.i;
-//   var j = gGamerPos.j;
-//   // my wall/floor pos
-//   // board[0][4].type = FLOOR;
-//   //   board[4][0].type = FLOOR;
-//   //   board[9][6].type = FLOOR;
-//   //   board[4][11].type = FLOOR;
-
-//   switch (event.key) {
-//     case 'ArrowLeft':
-//       moveTo(i, j - 1);
-//       break;
-//     case 'ArrowRight':
-//       moveTo(i, j + 1);
-//       break;
-//     case 'ArrowUp':
-//       moveTo(i - 1, j);
-//       break;
-//     case 'ArrowDown':
-//       moveTo(i + 1, j);
-//       break;
-//   }
-// }
