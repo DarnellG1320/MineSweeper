@@ -171,6 +171,21 @@ h2 {
   animation-direction: alternate;
 }
 
+
+.livesCount {
+  position: absolute;
+  top: 180px;
+  font-family: sans-serif;
+  left: 414px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
+  animation-direction: alternate;
+
+  animation: MineSweepBGC 4s linear infinite;
+  animation-direction: alternate;
+}
+
+
+
 table {
   
   position: absolute;

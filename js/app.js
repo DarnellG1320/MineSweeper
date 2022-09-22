@@ -17,9 +17,11 @@ var gCellClicked = false;
 var gIsFirstClick = true;
 var gisGameLost = false;
 var gGameIsPlaying = false;
+var gLivesCount = 3;
+var gBestScore = 0;
 
 var gTotalBOMBCount = 2;
-var SIZE = 4;
+var SIZE = 8;
 
 var gIntervalId = null;
 
@@ -45,18 +47,22 @@ function rightClicked() {
 
 //**** Local Storage *****
 
-var scoreSum = localStorage.getItem('Best Score', scoreSum);
+localStorage.setItem('Best Score', gBestScore);
+var storedBestScore = localStorage.getItem('Best Score', gBestScore);
+console.log('storedBestScore: ', storedBestScore);
+var bestScore = document.getElementById('bestScore')
+bestScore.innerHTML = null;
+bestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
 var key = localStorage.getItem('Name', key);
-
 // **** DOM name field and input field ****
 
 var inputKey = document.getElementById('inputKey');
 var btnInsert = document.getElementById('btnInsert');
 var isNamed = document.getElementById('isNamed');
 
-isNamed.innerHTML += `${'Player Name'}: ${key}`;
-bestScore.innerHTML += `${'Best Score'}: ${scoreSum}`;
 
+isNamed.innerHTML += `${'Player Name'}: ${key}`;
+// bestScore.innerHTML += `${'Best Score'}: ${gBestScore}`;
 btnInsert.onclick = function () {
   var key = inputKey.value;
 
@@ -75,10 +81,6 @@ function changeFunc() {
   initGame();
 }
 
-function startGame() {
-  initGame();
-}
-
 function restartGame() {
   gGameScore = 0;
   initGame();
@@ -87,9 +89,10 @@ function restartGame() {
 
 function initGame(SIZE = 12) {
   clearInterval(gIntervalId);
+  gLivesCount = 3;
+  gBestScore = 0;
   gIsFirstClick = true;
   gisGameLost = false;
-  
 
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
@@ -142,6 +145,8 @@ function convertSizeToBombAmt(SIZE) {
     SIZE = 14;
   } else if (SIZE === 12) {
     SIZE = 32;
+  } else if (SIZE === 16) {
+    SIZE = 64;
   }
 
   return SIZE;
@@ -173,7 +178,7 @@ function renderBoard(board) {
         else if (currCell.type === TILE) cellClass += ' wall';
       //prettier-ignore
       strHTML += `\t<td data-type="status" class="cell ${cellClass}" 
-      onclick="cellClicked(this, event, ${i}, ${j})">`;
+      onclick="cellClicked(this, event, ${i}, ${j})" >`;
 
       if (currCell.gameElement === BOMB && gCellClicked) {
         console.log('Bomb Clicked');
@@ -247,6 +252,8 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j) {
+  if (gisGameLost) return
+  renderLives();
   if (gIsFirstClick) {
     var isFirstClick = true;
     gIsFirstClick = false;
@@ -261,6 +268,7 @@ function cellClicked(elCell, event, i, j) {
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   if (event.type === 'click') var BOMBCount = countBombsAround(gBoard, i, j);
   // var zeroCount = countZerosAround(gBoard, i, j)
+  // console.log('zeroCount: ', zeroCount);
   // while (!BOMBCount) {
   //   prompt('Hello')
   // document.querySelectorAll('td')
@@ -273,8 +281,8 @@ function cellClicked(elCell, event, i, j) {
     elCell.innerText = BOMBCount;
     updateScore(1);
   }
-  for (let key = 0; key < SIZE; key++) {
-    for (let p = 0; p < SIZE; p++) {
+  for (var k = 0; k < SIZE; k++) {
+    for (var p = 0; p < SIZE; p++) {
       if (gBoard[i][j].gameElement === BOMB && gBoard[i][j].bombCount === 0)
         elCell.innerText = BOMBCount;
     }
@@ -299,13 +307,20 @@ function cellClicked(elCell, event, i, j) {
     isFirstClick = false;
   } else if (gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = '💥';
+    gLivesCount--;
+    renderLives()
     // ***** NEED TO SHOW BOMBS
     //********** BOMB HIT EVENTS *********
-
-    console.log('Game Over');
+  }
+  if (gLivesCount === 0) {
     gisGameLost = true;
-    gGameIsPlaying = !gGameIsPlaying;
+    gGameIsPlaying = false;
     clearInterval(gIntervalId);
+    renderLives()
+    // showBestScore()
+    alert('Game Over');
+
+
   }
   var cellCoord = getCellCoord(elCell.id);
   markCells(cellCoord);

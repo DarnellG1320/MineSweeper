@@ -40,6 +40,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+function showBestScore(){
+
+}
+
 function startTimer() {
   clearInterval(gIntervalId);
   var startTime = Date.now();
@@ -58,25 +62,6 @@ function startTimer() {
 }
 
 
-function countZerosAround(board, rowIdx, colIdx) {
-  var BOMBCount = 0;
-
-  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-    if (i < 0 || i >= SIZE) continue;
-
-    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-      if (j < 0 || j >= SIZE) continue;
-      if (i === rowIdx && j === colIdx) continue;
-
-      var currCell = board[i][j];
-
-      console.log('currCell: ', currCell);
-      if (currCell.gameElement !== BOMB) BOMBCount++;
-    }
-  }
-  return BOMBCount;
-}
-
 // Convert a location object {i, j} to a selector and render a value in that element
 function renderCell(location, value) {
   var cellSelector = '.' + getClassName(location);
@@ -85,6 +70,7 @@ function renderCell(location, value) {
 }
 
 function updateScore(score) {
+  gBestScore++
   gGameScore += score;
   document.querySelector('h2 span').innerText = gGameScore;
 }
@@ -105,6 +91,28 @@ function countBombsAround(board, rowIdx, colIdx) {
   }
   return BOMBCount;
 }
+
+
+function countZerosAround(board, rowIdx, colIdx) {
+  
+
+  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+    if (i < 0 || i >= SIZE) continue;
+
+    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+      if (j < 0 || j >= SIZE) continue;
+      if (i === rowIdx && j === colIdx) continue;
+
+      var currZeroCell = board[i][j];
+       currZeroCellArr.push(currZeroCell)
+
+      console.log('currCell: ', currCell);
+      if (currZeroCell.gameElement !== BOMB) BOMBCount++;
+    }
+  }
+  return currZeroCellArr;
+}
+
 
 function markCells(coords) {
   // query select them one by one and add mark
@@ -127,4 +135,12 @@ function getCellCoord(strCellId) {
   coord.i = +parts[1];
   coord.j = +parts[2];
   return coord;
+}
+
+
+function renderLives(){
+  var livesCount = document.getElementById('livesCount')
+  livesCount.innerHTML = null;
+  livesCount.innerHTML += `${'Lives Left'}: ${gLivesCount}`;
+
 }
