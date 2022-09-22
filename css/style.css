@@ -298,6 +298,8 @@ button:hover {
   position: absolute;
   top: 610px;
   left: 20px
+  
+  
 }
 
 label {
@@ -307,7 +309,7 @@ label {
   left: 212px;
   font-weight: bold;
   font-family: 'concert one', cursive;
-  animation: MineSweepBGC 5s linear infinite;
+  animation: MineSweepBGC 8s linear infinite;
   animation-direction: alternate;
 }
 
