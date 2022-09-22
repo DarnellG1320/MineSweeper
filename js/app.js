@@ -13,12 +13,14 @@ const TILE_STATUSES = {
 };
 
 var gCollectedBOMBCount = 0;
+var gTotalTilesCount = 0
 var gCellClicked = false;
 var gIsFirstClick = true;
 var gisGameLost = false;
 var gGameIsPlaying = false;
 var gLivesCount = 3;
 var gBestScore = 0;
+var scoreToWin = 0
 
 var gTotalBOMBCount = 2;
 var SIZE = 8;
@@ -51,8 +53,9 @@ localStorage.setItem('Best Score', gBestScore);
 var storedBestScore = localStorage.getItem('Best Score', gBestScore);
 console.log('storedBestScore: ', storedBestScore);
 var bestScore = document.getElementById('bestScore');
+var retSec = bestScore.innerHTML
 bestScore.innerHTML = null;
-bestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
+bestScore.innerHTML += `${'Best Score'}: ${retSec}`;
 var key = localStorage.getItem('Name', key);
 // **** DOM name field and input field ****
 
@@ -76,12 +79,13 @@ btnInsert.onclick = function () {
 function changeFunc() {
   var selectBox = document.getElementById('selectBox');
   SIZE = +selectBox.options[selectBox.selectedIndex].value;
-
+  scoreToWin = 0
   initGame();
 }
 
 function restartGame() {
   gGameScore = 0;
+  scoreToWin = 0
   initGame();
   updateScore(0);
 }
@@ -96,7 +100,10 @@ function initGame(SIZE = 12) {
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
   renderBoard(gBoard);
+  
+  // scoreToWin = calculateTileAmt()
   hideTiles(gBoard);
+  // console.log('scoreToWin: ', scoreToWin);
   clearInterval(gIntervalId);
 }
 
@@ -110,7 +117,7 @@ function buildBoard() {
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
       board[i][j] = { i, j, type: TILE, gameElement: null, bombCount: null };
-      //
+     gTotalTilesCount++
 
       // var currCellBombsCount = countBombsAround(board, i, j)
 
@@ -198,7 +205,7 @@ function renderBoard(board) {
 }
 
 function showBOMBS(board) {
-  var elBoard = document.querySelector('.board');
+  // var elBoard = document.querySelector('.board');
   var currCell;
 
   for (var i = 0; i < SIZE; i++) {
@@ -224,32 +231,40 @@ function showBOMBS(board) {
 // }
 
 function showZeros(board) {
-  var elBoard = document.querySelector('.board');
+  // var elBoard = document.querySelector('.board');
   var currCell;
 
   for (var i = 0; i < SIZE; i++) {
     for (var j = 0; j < SIZE; j++) {
       currCell = board[i][j];
-
+      
+      // console.log('currCell.bombCount: ', currCell.bombCount);
       if (currCell.bombCount === 0) {
-        currCell.gameElement = 'Yo';
-        console.log('currCell.gameElement: ', currCell.gameElement);
+        currCell.gameElement += '🌺';
+        // console.log('currCell.gameElement: ', currCell.gameElement);
       }
-
+      
       // var currCellBombsCount = countBombsAround(board, i, j)
-
+      
       // board[i][j].bombCount = currCellBombsCount
     }
+    // renderBoard(gBoard)
   }
 }
 function checkWin() {
-  winEvents();
+  if (gGameScore !== gTotalTilesCount){
+    console.log('gTotalTilesCount: ', gTotalTilesCount);
+    console.log('gGameScore: ', gGameScore);
+    winOrLose(gGameScore);
+}
 }
 
-function winEvents() {
-  localStorage.setItem('Best Score', XXXX);
+function winOrLose() {
+  var storedBestScore = localStorage.getItem('Best Score', gBestScore);
+  if (storedBestScore > gGameScore ) return 
+  else localStorage.setItem('Best Score', gGameScore);
   bestScore.innerHTML = null;
-  bestScore.innerHTML += `${'Best Score'}: ${sumTime}`;
+  bestScore.innerHTML += `${'Best Score'}: ${gGameScore}`;
 }
 
 function hideTiles(board) {
@@ -271,9 +286,11 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j) {
+  checkWin()
   if (gisGameLost) return;
   // showZeros(gBoard)
   renderLives();
+  
   if (gIsFirstClick) {
     var isFirstClick = true;
     gIsFirstClick = false;
@@ -296,9 +313,10 @@ function cellClicked(elCell, event, i, j) {
   // return
   // }
 
-  if (gBoard[i][j].gameElement !== BOMB);
-  {
+  if (gBoard[i][j].gameElement !== BOMB); {
     elCell.innerText = BOMBCount;
+    showZeros(gBoard)
+  // renderBoard(gBoard)
     updateScore(1);
   }
   for (var k = 0; k < SIZE; k++) {
@@ -307,7 +325,7 @@ function cellClicked(elCell, event, i, j) {
         elCell.innerText = BOMBCount;
     }
   }
-  console.log('BOMBCount: ', BOMBCount);
+  // console.log('BOMBCount: ', BOMBCount);
 
   /// ***** remove hidden *******
 
@@ -320,7 +338,7 @@ function cellClicked(elCell, event, i, j) {
 
   elCell.classList.add('selected');
   gSelectedElCell = elCell;
-  console.log('gSelectedElCell: ', gSelectedElCell);
+  // console.log('gSelectedElCell: ', gSelectedElCell);
 
   if (isFirstClick && gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = 'U Lucky';
@@ -329,7 +347,8 @@ function cellClicked(elCell, event, i, j) {
     elCell.innerText = '💥';
     gLivesCount--;
     renderLives();
-    // ***** NEED TO SHOW BOMBS
+    winOrLose(gGameScore)
+    
     //********** BOMB HIT EVENTS *********
   }
   if (gLivesCount === 0) {

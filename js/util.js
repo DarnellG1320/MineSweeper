@@ -57,6 +57,8 @@ function startTimer() {
     } else if (secs < 9) {
       elTime.innerText += '0';
       elTime.innerText += secs;
+    } else {
+      elTime.innerText += secs;
     }
   }, 10);
 }
@@ -93,25 +95,25 @@ function countBombsAround(board, rowIdx, colIdx) {
 }
 
 
-function countZerosAround(board, rowIdx, colIdx) {
+// function countZerosAround(board, rowIdx, colIdx) {
   
 
-  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-    if (i < 0 || i >= SIZE) continue;
+//   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//     if (i < 0 || i >= SIZE) continue;
 
-    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-      if (j < 0 || j >= SIZE) continue;
-      if (i === rowIdx && j === colIdx) continue;
+//     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//       if (j < 0 || j >= SIZE) continue;
+//       if (i === rowIdx && j === colIdx) continue;
 
-      var currZeroCell = board[i][j];
-       currZeroCellArr.push(currZeroCell)
+//       var currZeroCell = board[i][j];
+//        currZeroCellArr.push(currZeroCell)
 
-      console.log('currCell: ', currCell);
-      if (currZeroCell.gameElement !== BOMB) BOMBCount++;
-    }
-  }
-  return currZeroCellArr;
-}
+//       console.log('currCell: ', currCell);
+//       if (currZeroCell.gameElement !== BOMB) BOMBCount++;
+//     }
+//   }
+//   return currZeroCellArr;
+// }
 
 
 function markCells(coords) {
@@ -143,4 +145,12 @@ function renderLives(){
   livesCount.innerHTML = null;
   livesCount.innerHTML += `${'Lives Left'}: ${gLivesCount}`;
 
+}
+
+function calculateTileAmt() {
+  var tilesSum = 0
+  // debugger
+ tilesSum = (gTotalTilesCount - gTotalBOMBCount )
+ console.log('tilesSum: ', tilesSum);
+ return tilesSum
 }
