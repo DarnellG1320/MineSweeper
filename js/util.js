@@ -74,6 +74,7 @@ function renderCell(location, value) {
 function updateScore(score) {
   gBestScore++
   gGameScore += score;
+  
   document.querySelector('h2 span').innerText = gGameScore;
 }
 
