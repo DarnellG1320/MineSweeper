@@ -1,0 +1,347 @@
+@keyframes MineSweep {
+  0% ,
+   70%,
+  60%,
+  20.1%,
+  /* 100%, */
+  65.1%,
+  60%,
+  /* 90.1%, */
+  /* 92%, */
+  10% {
+    color: (67, 31, 139);
+    text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
+      12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
+  }
+  100% {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px rgb(255, 255, 255);
+  }
+}
+
+@keyframes MineSweepBGC {
+  0% ,
+   70%,
+  60%,
+  20.1%,
+  /* 100%, */
+  65.1%,
+  60%,
+  /* 90.1%, */
+  /* 92%, */
+  10% {
+    color: (67, 31, 139);
+    text-shadow: 8px 1.5px 1.5px rgb(39, 0, 94), 12px 1.5px 1.5px rgb(39, 0, 94),
+      16px 1.5px 1.5px rgb(39, 0, 94);
+  }
+  100% {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px rgb(255, 255, 255);
+  }
+}
+
+@keyframes animateTable {
+  0%,
+  70%,
+  60%,
+  20.1%,
+  60%,
+  65.1%,
+  30%,
+  50.1%,
+  60%,
+  20% {
+    color: (67, 31, 139);
+    box-shadow: none;
+  }
+  100% {
+    color: #fff;
+    box-shadow: 8px 8px 8px rgb(255, 255, 255);
+  }
+}
+
+@keyframes animate {
+  0%,
+  70%,
+  60%,
+  70.1%,
+  60%,
+  65.1%,
+  80%,
+  70.1%,
+  92%,
+  20% {
+    color: (67, 31, 139);
+    box-shadow: none;
+  }
+  100% {
+    color: #fff;
+    box-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
+  }
+}
+
+@keyframes scoreFrames {
+  0%,
+  70%,
+  60%,
+  70.1%,
+  60%,
+  65.1%,
+  80%,
+  70.1%,
+  92%,
+  20% {
+    color: (67, 31, 139);
+    text-shadow: none;
+  }
+  100% {
+    color: #fff;
+    text-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
+  }
+}
+
+body {
+  background-color: rgb(39, 0, 94);
+  color: white;
+}
+
+.header {
+  background-color: rgb(39, 0, 94);
+  transition: 200ms;
+  font-family: sans-serif;
+  padding: 20px;
+  border-bottom: 10px 10px solid rgb(19, 2, 52);
+  height: 20px;
+  border: 3px solid white;
+  border-style: groove;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  padding-bottom: 60px;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
+    12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
+  border-radius: 8px;
+  box-shadow: 8px 8px 8px black;
+  -webkit-box-reflect: below 1px
+    linear-gradient(transparent, rgba(255, 255, 255, 0.238));
+  animation-direction: alternate;
+
+  /* outline: none; */
+  /* animation: MineSweep 4s linear infinite; */
+}
+
+.header:hover {
+  background-color: rgb(67, 31, 139);
+  transition: 130ms;
+  text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
+    12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
+}
+
+h1 {
+  position: absolute;
+  top: 25px;
+  border-radius: 8px;
+  animation: MineSweep 5s linear infinite;
+  animation-direction: alternate;
+}
+
+/* score */
+h2 {
+  position: absolute;
+  top: 135px;
+  font-family: 'concert one', cursive;
+  left: 270px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
+  animation: MineSweepBGC 4s linear infinite;
+  animation-direction: alternate;
+}
+
+.bestScore {
+  position: absolute;
+  top: 135px;
+  font-family: 'concert one', cursive;
+  left: 270px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
+  animation: MineSweepBGC 4s linear infinite;
+  animation-direction: alternate;
+}
+
+.livesCount {
+  position: absolute;
+  top: 180px;
+  font-family: sans-serif;
+  left: 380px;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
+  animation: MineSweepBGC 4s linear infinite;
+  animation-direction: alternate;
+}
+
+table {
+  position: absolute;
+  /* max-width: 70%; */
+  min-width: 450px;
+  height: 400px;
+  padding: 4px;
+  border-radius: 6px;
+  border: 3px white;
+  border-style: groove;
+  transition: 0.5s;
+  box-shadow: 6px 6px 6px black;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 8px;
+  margin-right: 12px;
+  /* margin-left: 12px; */
+  margin-bottom: 20px;
+  top: 180px;
+  /* bottom: 450px; */
+  animation: animateTable 1.6s linear infinite;
+  animation-direction: alternate;
+}
+
+td {
+  font-weight: bold;
+  transition: 0.5s;
+  animation: animate 4s linear infinite;
+  animation-direction: alternate;
+}
+
+td:hover {
+  background-color: rgba(67, 31, 139, 0.58);
+}
+
+.cell {
+  margin: 5px;
+  width: 40px;
+  min-width: 20px;
+  max-width: 40px;
+  height: 15px;
+  max-height: 20px;
+  text-align: center;
+}
+
+.floor {
+  background-color: rgb(67, 31, 139);
+  z-index: 0;
+}
+.wall {
+  background-color: rgba(211, 211, 211, 0.439);
+  border: 2px solid rgba(255, 255, 255, 0.509);
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.timePlayed {
+  position: absolute;
+  top: 30px;
+
+  left: 262px;
+
+  font-family: 'concert one', cursive;
+  transition: 0.5s;
+  /* left: 12px; */
+  width: 180px;
+  height: 28px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(39, 0, 94);
+  border-radius: 10px;
+  color: aliceblue;
+  border-color: aliceblue;
+  font-weight: bold;
+  font-size: 1.4em;
+  animation: MineSweepBGC 5s linear infinite;
+  animation-direction: alternate;
+}
+
+button {
+  position: absolute;
+  /* bottom: 250px; */
+  width: 150px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(39, 0, 94);
+  border-radius: 10px;
+  color: aliceblue;
+  border-color: aliceblue;
+  font-weight: bold;
+  font-size: 1.2em;
+  top: 673px;
+  animation: animate 2s linear infinite;
+  animation-direction: alternate;
+}
+
+.rst {
+  margin-top: 20px;
+  left: 276px;
+  top: 665px;
+}
+
+.btnInsert {
+  position: absolute;
+  top: 665px;
+  left: 20px;
+}
+
+.start {
+  margin-top: 20px;
+  left: 180px;
+}
+
+button:hover {
+  background-color: rgb(67, 31, 139);
+  transition: 65ms;
+}
+
+.inputKey {
+  position: absolute;
+  font-family: 'concert one', cursive;
+  top: 640px;
+  left: 20px;
+}
+
+.isNamed {
+  font-family: 'concert one', cursive;
+  font-weight: bold;
+  position: absolute;
+  top: 610px;
+  left: 25px;
+}
+
+label {
+  position: absolute;
+  top: 611px;
+  /* bottom: 260px; */
+  left: 290px;
+  font-weight: bold;
+  font-family: 'concert one', cursive;
+  /* animation: MineSweepBGC 8s linear infinite;
+  animation-direction: alternate; */
+}
+
+select {
+  position: absolute;
+  top: 641px;
+  /* bottom: 260px; */
+  font-family: 'concert one', cursive;
+  left: 266px;
+}
+
+option {
+  font-family: 'concert one', cursive;
+  font-weight: bold;
+}
+
+.mark {
+  background-color: #fff;
+}
+
+.selected {
+  background-color: rgb(224, 117, 117);
+}
