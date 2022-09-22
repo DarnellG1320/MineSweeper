@@ -29,6 +29,7 @@ function getClassName(location) {
   }
  
   function startTimer(){
+    clearInterval(gIntervalId)
     var startTime = Date.now()
     gIntervalId = setInterval(function(){
       var elTime = document.querySelector('.timePlayed')

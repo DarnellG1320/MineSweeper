@@ -17,15 +17,9 @@
     </table>
 
 
-    <label for="howhard-select">Select Difficultly</label>
+    <label for="howhard-select">Select Difficultly:</label>
 
-    <select id="selectBox" onchange="changeFunc();">
-        <option value="">--Please Select Difficultly--</option>
-        <option value="4">Easy</option>
-        <option value="8">Medium</option>
-        <option value="12">Pro</option>
-
-    </select>
+    
 
     <button class="rst" onclick="restartGame(this)">Restart</button>
     <button class="start" onclick="startGame(this)">Start</button>
@@ -38,6 +32,14 @@
         <span class=""></span>
 
     </div>
+
+    <select id="selectBox" onchange="changeFunc();">
+        <option value="">--Please Select Difficultly--</option>
+        <option value="4">Easy</option>
+        <option value="8">Medium</option>
+        <option value="12">Pro</option>
+
+    </select>
     <input class="inputKey" id="inputKey" type="text" placeholder="Enter Name...">
     <button type="button" class="btnInsert" id="btnInsert">Submit</button>
     <div class="isNamed" id="isNamed"> </div>

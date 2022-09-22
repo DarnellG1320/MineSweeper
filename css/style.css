@@ -1,206 +1,328 @@
+
+
+@keyframes MineSweep {
+  0% ,
+   70%,
+  60%,
+  20.1%,
+  /* 100%, */
+  65.1%,
+  60%,
+  /* 90.1%, */
+  /* 92%, */
+  10% {
+    color: (67, 31, 139);
+    text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
+    12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
+  }
+  100% {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px rgb(255, 255, 255);
+  }
+}
+
+
+
+@keyframes animateTable {
+  0%,
+  70%,
+  60%,
+  20.1%,
+  60%,
+  65.1%,
+  30%,
+  50.1%,
+  60%,
+  20% {
+    color: (67, 31, 139);
+    box-shadow: none;
+  }
+  100% {
+    color: #fff;
+    box-shadow: 8px 8px 8px rgb(255, 255, 255);
+  }
+}
+
+
+@keyframes animate {
+  0%,
+  70%,
+  60%,
+  70.1%,
+  60%,
+  65.1%,
+  80%,
+  70.1%,
+  92%,
+  20% {
+    color: (67, 31, 139);
+    box-shadow: none;
+  }
+  100% {
+    color: #fff;
+    box-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
+  }
+}
+
+@keyframes scoreFrames {
+  0%,
+  70%,
+  60%,
+  70.1%,
+  60%,
+  65.1%,
+  80%,
+  70.1%,
+  92%,
+  20% {
+    color: (67, 31, 139);
+    text-shadow: none;
+  }
+  100% {
+    color: #fff;
+    text-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
+  }
+}
+
+
+
+
+
+
 body {
-    background-color: rgb(39, 0, 94);
-    color: white;
+  background-color: rgb(39, 0, 94);
+  color: white;
 }
 
 .header {
-    background-color: rgb(39, 0, 94);
-    transition: 200ms;
-    font-family: sans-serif;
-    padding: 20px;
-    border-bottom: 10px 10px solid rgb(19, 2, 52);
-    height: 40px;
-    border: 3px solid white;
-    border-style: groove;
-    margin-top: 10px;
-    margin-bottom: 25px;
-    padding-bottom: 60px;
-    color: rgb(255, 255, 255);
-    font-size: 1em;
-    text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
-      12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
-    border-radius: 8px;
-    box-shadow: 8px 8px 8px black;
-  }
-  
-  .header:hover {
-    background-color: rgb(67, 31, 139);
-    transition: 130ms;
-    text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
-      12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
-  }
+  background-color: rgb(39, 0, 94);
+  transition: 200ms;
+  font-family: sans-serif;
+  padding: 20px;
+  border-bottom: 10px 10px solid rgb(19, 2, 52);
+  height: 20px;
+  border: 3px solid white;
+  border-style: groove;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  padding-bottom: 60px;
+  color: rgb(255, 255, 255);
+  font-size: 1em;
+  text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
+    12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
+  border-radius: 8px;
+  box-shadow: 8px 8px 8px black;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 255, 255, 0.238));
+  animation-direction: alternate;
 
-label {
-  margin-left: 12px;
+  /* outline: none; */
+  /* animation: MineSweep 4s linear infinite; */
 }
 
+
+.header:hover {
+  background-color: rgb(67, 31, 139);
+  transition: 130ms;
+  text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
+    12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
+}
+
+h1 {
+  position: absolute;
+  top: 25px;
+  border-radius: 8px;
+  animation: MineSweep 5s linear infinite;
+  animation-direction: alternate;
+
+}
+
+
+/* score */
 h2 {
   position: absolute;
-  bottom: 320px;
-  font-family: sans-serif;
-  left: 12px;
+  top: 102px;
+  font-family: 'concert one', cursive;
+  left: 270px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, white);
+  animation-direction: alternate;
+
+  animation: scoreFrames 4s linear infinite;
+  animation-direction: alternate;
+
 }
+
 
 table {
-    position: absolute;
-    max-width: 70%;
-    min-width: 300px;
-    height: 400px;
-    padding: 4px;
-    border-radius:  6px;
-    border: 3px white;
-    border-style: groove;
-    transition: 65ms;
-    box-shadow: 6px 6px 6px black;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: 12px;
-    margin-bottom: 20px;
-    
-    bottom: 450px;
-  }
+  position: absolute;
+  max-width: 70%;
+  min-width: 300px;
+  height: 400px;
+  padding: 4px;
+  border-radius: 6px;
+  border: 3px white;
+  border-style: groove;
+  transition: 0.5s;
+  box-shadow: 6px 6px 6px black;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 12px;
+  margin-bottom: 20px;
 
-td {
-    
-font-weight: bold;
-    transition: 0.5s;
+  bottom: 450px;
+  animation: animateTable 1.6s linear infinite;
+  animation-direction: alternate;
+  
 }
 
-  td:hover {
-    background-color: rgba(67, 31, 139, 0.58);
-  }
 
- 
+td {
+  font-weight: bold;
+  transition: 0.5s;
+  animation: animate 4s linear infinite;
+  animation-direction: alternate;
 
+}
+
+td:hover {
+  background-color: rgba(67, 31, 139, 0.58);
+}
 
 .cell {
-    margin: 5px;
-    width: 40px;
-    min-width: 20px;
-    max-width: 40px;
-    height: 15px;
-    max-height: 20px;
-    text-align: center;
+  margin: 5px;
+  width: 40px;
+  min-width: 20px;
+  max-width: 40px;
+  height: 15px;
+  max-height: 20px;
+  text-align: center;
 }
 
 .floor {
-    background-color: rgb(67, 31, 139);
-    z-index: 0;
+  background-color: rgb(67, 31, 139);
+  z-index: 0;
 }
 .wall {
-    background-color: rgba(211, 211, 211, 0.439);
-    border: 2px solid rgba(255, 255, 255, 0.509);
-    border-radius: 6px;
-    z-index: 1;
-}
-
-button{
-    position: absolute;
-    /* bottom: 250px; */
-    width: 150px;
-    height: 50px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    border-radius: 6px;
-    position: absolute;
-    background-color: rgb(39, 0, 94);
-    border-radius: 10px;
-    color: aliceblue;
-    border-color: aliceblue;
-    font-weight: bold;
-    font-size: 1.2em;
-  
-    /* float: left; */
-  
-    bottom: 380px;
-
-}
-.rst {
-    margin-top: 20px;
-    left: 10px;
-}
-.start {
-    margin-top: 20px;
-    left: 180px;
-}
-
-button:hover {
-background-color: rgb(67, 31, 139);
-transition: 65ms;
+  background-color: rgba(211, 211, 211, 0.439);
+  border: 2px solid rgba(255, 255, 255, 0.509);
+  border-radius: 6px;
+  z-index: 1;
 }
 
 .timePlayed {
   position: absolute;
-  bottom: 200px;
-  
-  font-family: sans-serif;
-  left: 12px;
-   width: 200px;
-    height: 50px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    border-radius: 6px;
-    position: absolute;
-    background-color: rgb(39, 0, 94);
-    border-radius: 10px;
-    color: aliceblue;
-    border-color: aliceblue;
-    font-weight: bold;
-    font-size: 1.2em;
+  top: 30px;
+
+  left: 262px;
+
+  font-family: 'concert one', cursive;
+  transition: 0.5s;
+  /* left: 12px; */
+  width: 180px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(39, 0, 94);
+  border-radius: 10px;
+  color: aliceblue;
+  border-color: aliceblue;
+  font-weight: bold;
+  font-size: 1.4em;
+  animation: MineSweep 5s linear infinite;
+  animation-direction: alternate;
+
+}
+
+button {
+  position: absolute;
+  /* bottom: 250px; */
+  width: 150px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(39, 0, 94);
+  border-radius: 10px;
+  color: aliceblue;
+  border-color: aliceblue;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  /* float: left; */
+
+  bottom: 300px;
+  animation: animate 2s linear infinite;
+  animation-direction: alternate;
+
+}
+
+.rst {
+  margin-top: 20px;
+  left: 10px;
+}
+.start {
+  margin-top: 20px;
+  left: 180px;
+}
+
+button:hover {
+  background-color: rgb(67, 31, 139);
+  transition: 65ms;
 }
 
 .inputKey {
-
+  font-family: 'concert one', cursive;
   position: absolute;
-  bottom: 306px;
-  left: 12px;
+  bottom: 395px;
+  left: 13px;
+}
+
+.isNamed {
+  font-family: 'concert one', cursive;
+  font-weight: bold;
+  position: absolute;
+  bottom: 430px;
+  left: 13px;
+}
+
+label {
+  position: absolute;
+  bottom: 260px;
+  margin-left: 14px;
+  font-weight: bold;
+  font-family: 'concert one', cursive;
+  animation: MineSweep 5s linear infinite;
+  animation-direction: alternate;
+
 
 }
 
 select {
-  font-family: sans-serif;
-  
+  position: absolute;
+  bottom: 260px;
+  font-family: 'concert one', cursive;
+  left: 145px;
 }
 
 option {
-  font-family: sans-serif;
+  font-family: 'concert one', cursive;
   font-weight: bold;
-}
-
-.isNamed {
-  font-family: sans-serif;
-  font-weight: bold;
-  position: absolute;
-  bottom: 275px;
-  left: 12px;
 }
 
 .btnInsert {
-
   position: absolute;
 
   position: absolute;
-  bottom: 282px;
+  bottom: 380px;
   left: 180px;
 }
 
+.mark {
+  background-color: #fff;
+}
 
-
-
-
-
-
-
-
-  .mark {
-      background-color: #fff;
-  }
-
-  .selected {
-
-    background-color: rgb(224, 117, 117);
-  }
-
-
-
-  
+.selected {
+  background-color: rgb(224, 117, 117);
+}

@@ -17,10 +17,10 @@ var gCellClicked = false;
 
 var gTotalBOMBCount = 2;
 var SIZE = 4
-const MINEAMOUNT = 5;
+// const MINEAMOUNT 
 
 var gIntervalId = null;
-var gIntervalId2 = null;
+// var gIntervalId2 = null;
 var gSelectedElCell;
 // Model:
 var gGameScore = 0
@@ -79,6 +79,7 @@ function restartGame() {
 // }
 
 function initGame(SIZE) {
+  clearInterval(gIntervalId)
   gisGameLost = false
  
   gBoard = buildBoard(SIZE);
@@ -112,60 +113,79 @@ function buildBoard() {
 
   // TODO: Create the Matrix 10 * 12
   board = createMat(SIZE, SIZE);
-  console.log('board: ', board);
-
+  
   // TODO: Put FLOOR everywhere and WALL at edges
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
       board[i][j] = { i, j, type: FLOOR, gameElement: null, bombCount: null };
       //
-
+      
       board[i][j].type = WALL;
       // var currCellBombsCount = countBombsAround(board, i, j)
-
+      
       // board[i][j].bombCount = currCellBombsCount
     }
   }
-
+  
   //********* MINE ADDER******
 
-  // for (let i = 0; i < MINEAMOUNT; i++) {
-
-  // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].type = FLOOR;
-
-  // }
-
-  board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-  board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-  board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-  board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+  var totalBOMBCount = convertSizeToBombAmt(SIZE)
+  
+  for (var k = 0; k < totalBOMBCount; k++) {
+    
+    board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+    
+    
+  }
+  
+  // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+  // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+  // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+  // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
       var currCellBombsCount = countBombsAround(board, i, j);
-
+      
       board[i][j].bombCount = currCellBombsCount;
     }
   }
-
+  console.log('board: ', board);
+  
   return board;
+}
+
+
+
+function convertSizeToBombAmt(SIZE) {
+
+  if (SIZE === 4) {
+    SIZE = 2 
+  } else if (SIZE === 8) {
+    SIZE = 14
+  } else if (SIZE === 12) {
+    SIZE = 32
+  }
+  
+return SIZE
+
 }
 
 function renderBoard(board) {
   
   var elBoard = document.querySelector('.board');
   var strHTML = '';
-
+  
   for (var i = 0; i < board.length; i++) {
     strHTML += '<tr>\n';
-
+    
     for (var j = 0; j < board[0].length; j++) {
       var currCell = board[i][j];
-
+      
       var cellClass = getClassName({ i, j });
-
+      
       // **** if cellClicked - remove status hidden
       currCell.status = 'HIDDEN';
-
+      
       if (currCell.status === 'HIDDEN')
         if (currCell.type === FLOOR)
           //  var elCurrCell = document.querySelector(".cell")
@@ -198,22 +218,6 @@ function renderBoard(board) {
   elBoard.innerHTML = strHTML;
 }
 
-function createBombs(totalBOMBAmount){
-
-  for (let i = 0; i < gTotalBOMBCount; i++) {
-    for (let j = 0; j < gTotalBOMBCount; j++) {
-      
-      gBoard[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-    }
-    
-  }
-  console.log(gBoard);
-
-}
-
-
-
-
 
 
 function hideTiles(board) {
@@ -240,7 +244,7 @@ function hideTiles(board) {
 // };
 
 function cellClicked(elCell, event, i, j) {
-  if (gGameIsPlaying === false) {
+  if (!gGameIsPlaying ) {
   startTimer()
   gGameIsPlaying = true
   } else if (gisGameLost) return
@@ -304,7 +308,8 @@ function cellClicked(elCell, event, i, j) {
     
     console.log('Game Over');
     gisGameLost = true
-    gGameIsPlaying = false
+    gGameIsPlaying = !gGameIsPlaying
+    clearInterval(gIntervalId)
   }
 
   // console.log('elCell.id: ', elCell.id)
