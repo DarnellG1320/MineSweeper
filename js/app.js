@@ -15,6 +15,8 @@ const TILE_STATUSES = {
 var gCollectedBOMBCount = 0;
 var gCellClicked = false;
 var gIsFirstClick = true;
+var gisGameLost = false;
+var gGameIsPlaying = false;
 
 var gTotalBOMBCount = 2;
 var SIZE = 4;
@@ -26,8 +28,6 @@ var gSelectedElCell;
 var gIsRightClick = false;
 
 var gGameScore = 0;
-var gisGameLost = false;
-var gGameIsPlaying = false;
 var gBoard;
 
 //  ****** right click events *****
@@ -246,6 +246,13 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j) {
+  if (gIsFirstClick) {
+    var isFirstClick = true;
+    gIsFirstClick = false;
+  } else {
+    isFirstClick = false;
+  }
+
   if (!gGameIsPlaying) {
     startTimer();
     gGameIsPlaying = true;
@@ -259,8 +266,9 @@ function cellClicked(elCell, event, i, j) {
   // console.log('document: ', document);
   // return
   // }
- 
- if (gBoard[i][j].gameElement !== BOMB); {
+
+  if (gBoard[i][j].gameElement !== BOMB);
+  {
     elCell.innerText = BOMBCount;
     updateScore(1);
   }
@@ -280,13 +288,14 @@ function cellClicked(elCell, event, i, j) {
   if (gBoard[i][j].status !== 'marked') {
     gBoard[i][j].status = 'marked';
   }
+
   elCell.classList.add('selected');
   gSelectedElCell = elCell;
   console.log('gSelectedElCell: ', gSelectedElCell);
-  if (gIsFirstClick && gBoard[i][j].gameElement === BOMB) {
+
+  if (isFirstClick && gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = 'Lucky';
-    console.log('Yo');
-    gIsFirstClick = false;
+    isFirstClick = false;
   } else if (gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = '💥';
     // ***** NEED TO SHOW BOMBS
