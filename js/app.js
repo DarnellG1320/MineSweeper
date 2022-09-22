@@ -87,8 +87,9 @@ function restartGame() {
 
 function initGame(SIZE = 12) {
   clearInterval(gIntervalId);
+  gIsFirstClick = true;
   gisGameLost = false;
-  var gIsFirstClick = true;
+  
 
   gBoard = buildBoard(SIZE);
   console.log('gBoard: ', gBoard);
@@ -294,7 +295,7 @@ function cellClicked(elCell, event, i, j) {
   console.log('gSelectedElCell: ', gSelectedElCell);
 
   if (isFirstClick && gBoard[i][j].gameElement === BOMB) {
-    elCell.innerText = 'Lucky';
+    elCell.innerText = 'U Lucky';
     isFirstClick = false;
   } else if (gBoard[i][j].gameElement === BOMB) {
     elCell.innerText = '💥';
