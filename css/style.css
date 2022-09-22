@@ -153,8 +153,6 @@ h2 {
   font-family: 'concert one', cursive;
   left: 270px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation-direction: alternate;
-
   animation: MineSweepBGC 4s linear infinite;
   animation-direction: alternate;
 }
@@ -165,8 +163,6 @@ h2 {
   font-family: 'concert one', cursive;
   left: 270px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation-direction: alternate;
-
   animation: MineSweepBGC 4s linear infinite;
   animation-direction: alternate;
 }
@@ -177,7 +173,6 @@ h2 {
   font-family: sans-serif;
   left: 380px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation-direction: alternate;
   animation: MineSweepBGC 4s linear infinite;
   animation-direction: alternate;
 }
@@ -277,10 +272,7 @@ button {
   border-color: aliceblue;
   font-weight: bold;
   font-size: 1.2em;
-
-  /* float: left; */
   top: 673px;
-  /* bottom: 300px; */
   animation: animate 2s linear infinite;
   animation-direction: alternate;
 }
@@ -288,13 +280,10 @@ button {
 .rst {
   margin-top: 20px;
   left: 276px;
-
   top: 665px;
 }
 
 .btnInsert {
-  position: absolute;
-
   position: absolute;
   top: 665px;
   left: 20px;
@@ -311,8 +300,8 @@ button:hover {
 }
 
 .inputKey {
-  font-family: 'concert one', cursive;
   position: absolute;
+  font-family: 'concert one', cursive;
   top: 640px;
   left: 20px;
 }
