@@ -31,7 +31,7 @@ var gBoard;
 
 //  ****** right click events *****
 
-window.oncontextmenu = function (elCell, event, i, j, isRightClick) {
+window.oncontextmenu = function () {
   return false; // cancel default menu
 };
 
@@ -233,13 +233,13 @@ function hideTiles(board) {
 
 function cellClicked(elCell, event, i, j, isRightClick) {
   if (elCell.innerText === '🇧🇦') return;
-  if (elCell.innerText === '💥') return;
+  if (elCell.innerText === '💣') return;
   else var currCell = gBoard[i][j];
 
   var currCellElement = gBoard[i][j].gameElement;
 
   if (isRightClick && currCellElement === ' ') {
-    var bombFlag = (elCell.innerText = '🇧🇦');
+    elCell.innerText = '🇧🇦'
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
     elCell.classList.add('scale-down-center');
     renderBoard;
@@ -275,7 +275,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (gBoard[i][j].gameElement !== BOMB) {
     elCell.innerText = BOMBCount;
     showZeros(gBoard);
-    updateScore(1);
+    // updateScore(1);
   }
 
   for (var k = 0; k < SIZE; k++) {
@@ -292,7 +292,8 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     if (gBoard[i][j].status === 'marked') return;
   if (gBoard[i][j].status !== 'marked') {
     gBoard[i][j].status = 'marked';
-    updateScore(1);
+    if (gBoard[i][j].gameElement !== BOMB)updateScore(1);
+    
   }
 
   elCell.classList.add('selected');
@@ -303,7 +304,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     isFirstClick = false;
   } else if (!isRightClick && currCell.gameElement === ' ') {
     console.log('YYYYY');
-    elCell.innerText = '💥';
+    elCell.innerText = '💣';
     gLivesCount--;
     renderLives();
     checkIfBest(gGameScore);
