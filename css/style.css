@@ -15,7 +15,7 @@
   }
   100% {
     color: rgb(255, 255, 255);
-    text-shadow: 4px 4px 4px rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px rgb(255, 255, 255);
   }
 }
 
@@ -176,10 +176,20 @@ body {
   text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
     12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
   border-radius: 8px;
-  box-shadow: 8px 8px 8px black;
+  /* box-shadow: 8px 8px 8px black; */
   -webkit-box-reflect: below 1px
     linear-gradient(transparent, rgba(255, 255, 255, 0.238));
-  animation-direction: alternate;
+  /* animation-direction: alternate; */
+  text-decoration: none;  
+    color: rgb(67, 31, 139);
+    text-shadow: none;  
+    -webkit-transition: 500ms linear 0s;  
+    -moz-transition: 500ms linear 0s;  
+    -o-transition: 500ms linear 0s;  
+    transition: 500ms linear 0s;  
+    outline: 0 none; 
+   
+    
 
   /* outline: none; */
   /* animation: MineSweep 4s linear infinite; */
@@ -190,6 +200,8 @@ body {
   transition: 130ms;
   text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
     12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
+    color: #fff;  
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff; 
 }
 
 h1 {
@@ -257,6 +269,8 @@ table {
 }
 
 td {
+  max-width: 50px;
+  max-height: 50px;
   font-weight: bold;
   transition: 0.5s;
   animation: animate 4s linear infinite;
@@ -273,7 +287,7 @@ td:hover {
   min-width: 20px;
   max-width: 40px;
   height: 15px;
-  max-height: 20px;
+  /* max-height: 20px; */
   text-align: center;
 }
 
@@ -330,7 +344,8 @@ button {
   font-size: 1.2em;
   top: 673px;
   animation: bounce 2s ease 0s infinite alternate forwards;
-  animation-direction: alternate;
+  
+  
   
 }
 

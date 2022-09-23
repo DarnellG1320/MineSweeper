@@ -231,11 +231,11 @@ function checkWin() {
   if (gGameScore !== gTotalTilesCount) {
     // console.log('gTotalTilesCount: ', gTotalTilesCount);
     // console.log('gGameScore: ', gGameScore);
-    winOrLose(gGameScore);
+    checkIfBest(gGameScore);
   }
 }
 
-function winOrLose() {
+function checkIfBest() {
   var storedBestScore = localStorage.getItem('Best Score', gBestScore);
   // console.log('storedBestScore: ', storedBestScore);
   if (storedBestScore > gGameScore) return;
@@ -269,7 +269,7 @@ function cellClicked(elCell, event, i, j) {
 
   if (!gGameIsPlaying) {
     startTimer();
-    winOrLose();
+    checkIfBest();
     gGameIsPlaying = true;
 
 
@@ -317,11 +317,12 @@ function cellClicked(elCell, event, i, j) {
     elCell.innerText = '💥';
     gLivesCount--;
     renderLives();
-    // winOrLose(gGameScore)
+    checkIfBest(gGameScore)
 
     //********** BOMB HIT EVENTS *********
   }
   if (gLivesCount === 0) {
+    checkIfBest(gGameScore)
     gisGameLost = true;
     gGameIsPlaying = false;
     showBOMBS(gBoard);
