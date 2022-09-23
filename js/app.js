@@ -50,9 +50,8 @@ var inputKey = document.getElementById('inputKey');
 var btnInsert = document.getElementById('btnInsert');
 var isNamed = document.getElementById('isNamed');
 
-isNamed.innerHTML += `${'Player Name'}: ${key}`;
-// bestScore.innerHTML += `${'Best Score'}: ${gBestScore}`;
-btnInsert.onclick = function () {
+  isNamed.innerHTML += `${'Player Name'}: ${key}`;
+  btnInsert.onclick = function () {
   var key = inputKey.value;
 
   if (key) {
@@ -78,10 +77,6 @@ function restartGame() {
 }
 
 function initGame(SIZE = 12) {
-  // var lastBestScore = localStorage.getItem('Best Score');
-  // document.querySelector('h2 span').innerText = lastBestScore;
-  console.log('localStorage: ', localStorage);
-
   clearInterval(gIntervalId);
   gGameScore = 0;
   gLivesCount = 3;
@@ -90,12 +85,11 @@ function initGame(SIZE = 12) {
   gisGameLost = false;
 
   gBoard = buildBoard(SIZE);
-  console.log('gBoard: ', gBoard);
   renderBoard(gBoard);
 
   // scoreToWin = calculateTileAmt()
   hideTiles(gBoard);
-  // console.log('scoreToWin: ', scoreToWin);
+
   clearInterval(gIntervalId);
 }
 
@@ -209,25 +203,18 @@ function showZeros(board) {
       if (currCell.bombCount === 0) {
         // currCell.gameElement += '#';
       }
-      //     if (gBoard[i][j].status === 'HIDDEN')
-      //   if (gBoard[i][j].status === 'marked') return;
-      // if (gBoard[i][j].status !== 'marked') {
-      //   gBoard[i][j].status = 'marked';
-      // }
     }
   }
 }
 function checkWin() {
   if (gGameScore !== gTotalTilesCount) {
-    // console.log('gTotalTilesCount: ', gTotalTilesCount);
-    // console.log('gGameScore: ', gGameScore);
     checkIfBest(gGameScore);
   }
 }
 
 function checkIfBest() {
   var storedBestScore = localStorage.getItem('Best Score', gBestScore);
-  // console.log('storedBestScore: ', storedBestScore);
+
   if (storedBestScore > gGameScore) return;
   else localStorage.setItem('Best Score', gGameScore);
   bestScore.innerHTML = null;
@@ -248,11 +235,10 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (elCell.innerText === '🇧🇦') return;
   if (elCell.innerText === '💥') return;
   else var currCell = gBoard[i][j];
-  // console.log('currCellElement: ', currCell);
+
   var currCellElement = gBoard[i][j].gameElement;
-  // console.log('currCellElement: ', currCellElement);
+
   if (isRightClick && currCellElement === ' ') {
-    // console.log('currCellElement: ', currCellElement);
     var bombFlag = (elCell.innerText = '🇧🇦');
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
     elCell.classList.add('scale-down-center');
@@ -279,7 +265,6 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     gGameIsPlaying = true;
 
     //***** showZeros not working yet *******
-    
   } else if (gisGameLost) return;
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   elCell.classList.add('scale-down-center');
@@ -290,7 +275,6 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (gBoard[i][j].gameElement !== BOMB) {
     elCell.innerText = BOMBCount;
     showZeros(gBoard);
-    // renderBoard(gBoard)
     updateScore(1);
   }
 
@@ -300,7 +284,6 @@ function cellClicked(elCell, event, i, j, isRightClick) {
         elCell.innerText = BOMBCount;
     }
   }
-  // console.log('BOMBCount: ', BOMBCount);
 
   /// ***** remove hidden *******
 
@@ -311,11 +294,9 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     gBoard[i][j].status = 'marked';
     updateScore(1);
   }
-  //  var isRightClick = isRightClicked()
-  //  console.log('isRightClick: ', isRightClick);
+
   elCell.classList.add('selected');
   gSelectedElCell = elCell;
-  // console.log('gSelectedElCell: ', gSelectedElCell);
 
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
     elCell.innerText = 'Lucky';
@@ -338,7 +319,6 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     clearInterval(gIntervalId);
     renderLives();
     renderBoard(gBoard);
-    // showBestScore()
     alert('Game Over');
   }
   var cellCoord = getCellCoord(elCell.id);
