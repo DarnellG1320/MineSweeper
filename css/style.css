@@ -100,6 +100,60 @@
   }
 }
 
+@keyframes bounce {
+  0%,
+	100% {
+		transform: translateX(0%);
+		transform-origin: 50% 50%;
+	}
+
+	15% {
+		transform: translateX(-30px) rotate(-6deg);
+	}
+
+	30% {
+		transform: translateX(15px) rotate(6deg);
+	}
+
+	45% {
+		transform: translateX(-15px) rotate(-3.6deg);
+	}
+
+	60% {
+		transform: translateX(9px) rotate(2.4deg);
+	}
+
+	75% {
+		transform: translateX(-6px) rotate(-1.2deg);
+	}
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.scale-down-center {
+	-webkit-animation: scale-down-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-down-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 body {
   background-color: rgb(39, 0, 94);
   color: white;
@@ -142,7 +196,7 @@ h1 {
   position: absolute;
   top: 25px;
   border-radius: 8px;
-  animation: MineSweep 5s linear infinite;
+  animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
 }
 
@@ -173,8 +227,10 @@ h2 {
   font-family: sans-serif;
   left: 380px;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation: MineSweepBGC 4s linear infinite;
-  animation-direction: alternate;
+  /* animation: bounce 4s linear infinite; */
+  /* animation-direction: alternate; */
+
+
 }
 
 table {
@@ -253,7 +309,7 @@ td:hover {
   border-color: aliceblue;
   font-weight: bold;
   font-size: 1.4em;
-  animation: MineSweepBGC 5s linear infinite;
+  animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
 }
 
@@ -273,8 +329,9 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
-  animation: animate 2s linear infinite;
+  animation: bounce 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
+  
 }
 
 .rst {
