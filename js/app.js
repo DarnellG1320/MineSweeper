@@ -255,16 +255,23 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
-var currCell = gBoard[i][j]
-console.log('currCellElement: ', currCell);
+  if (elCell.innerText === '🌩️') return
+  if (elCell.innerText === '💥') return
+ else var currCell = gBoard[i][j]
+// console.log('currCellElement: ', currCell);
 var currCellElement = gBoard[i][j].gameElement
-console.log('currCellElement: ', currCellElement);
+// console.log('currCellElement: ', currCellElement);
 if (isRightClick && currCellElement === " ") {
-  console.log('currCellElement: ', currCellElement);
+  // console.log('currCellElement: ', currCellElement);
   var bombFlag = 
   elCell.innerText = '🌩️'
+  elCell.style.backgroundColor = 'rgb(224, 117, 117)';
+  elCell.classList.add('scale-down-center')
   renderBoard
-}
+  checkWin();
+  console.log('YYY');
+  return
+} 
 
 
 
