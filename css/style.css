@@ -183,10 +183,10 @@ body {
   text-decoration: none;  
     color: rgb(67, 31, 139);
     text-shadow: none;  
-    -webkit-transition: 500ms linear 0s;  
-    -moz-transition: 500ms linear 0s;  
-    -o-transition: 500ms linear 0s;  
-    transition: 500ms linear 0s;  
+    -webkit-transition: 100ms linear 0s;  
+    -moz-transition: 100ms linear 0s;  
+    -o-transition: 100ms linear 0s;  
+    transition: 100ms linear 0s;  
     outline: 0 none; 
    
     
@@ -350,6 +350,11 @@ button {
   
 }
 
+button:hover {
+  background-color: rgb(67, 31, 139);
+  transition: 65ms;
+}
+
 .rst {
   margin-top: 20px;
   /* left: 276px; */
@@ -364,21 +369,13 @@ button {
   /* left: 20px; */
 }
 
-/* .start {
-  margin-top: 20px;
-  left: 180px;
-} */
-
-button:hover {
-  background-color: rgb(67, 31, 139);
-  transition: 65ms;
-}
-
 .inputKey {
   position: absolute;
   font-family: 'concert one', cursive;
   top: 640px;
   right: 60%;
+  /* animation: animateTable 3.2s linear infinite; */
+  animation-direction: alternate;
 }
 
 .isNamed {
@@ -406,6 +403,9 @@ select {
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
   left: 56%;
+  /* animation: animateTable 3.2s linear infinite; */
+  animation-direction: alternate;
+  
 }
 
 option {

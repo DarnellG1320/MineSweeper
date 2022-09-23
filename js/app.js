@@ -121,7 +121,6 @@ function buildBoard() {
       board[i][j].bombCount = currCellBombsCount;
     }
   }
-  console.log('board: ', board);
 
   return board;
 }
