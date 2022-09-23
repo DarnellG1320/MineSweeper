@@ -76,7 +76,7 @@
   }
   100% {
     color: #fff;
-    box-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
+    box-shadow: 3px 3px 3px 3px rgb(255, 255, 255);
   }
 }
 
@@ -374,7 +374,7 @@ button:hover {
   font-family: 'concert one', cursive;
   top: 640px;
   right: 60%;
-  /* animation: animateTable 3.2s linear infinite; */
+  animation: animate 4s linear infinite;
   animation-direction: alternate;
 }
 
@@ -403,7 +403,7 @@ select {
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
   left: 56%;
-  /* animation: animateTable 3.2s linear infinite; */
+  animation: animate 4s linear infinite;
   animation-direction: alternate;
   
 }
