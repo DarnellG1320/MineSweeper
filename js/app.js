@@ -162,8 +162,8 @@ function renderBoard(board) {
       onclick="cellClicked( this, event, ${i}, ${j},${isFalse})" oncontextmenu="cellClicked(this, event, ${i}, ${j},${isTrue})">`;
 
       if (currCell.gameElement === BOMB && gCellClicked) {
-      } else if (currCell.gameElement === BOMB) {
-        strHTML += BOMB;
+       strHTML += BOMB;
+      
       } else if (currCell.gameElement === '💥' && gisGameLost) {
         strHTML += '💥';
       }
@@ -231,8 +231,7 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
-  if (elCell.innerText === '🇧🇦') return;
-  if (elCell.innerText === '💣') return;
+  if (elCell.innerText === '🇧🇦' || elCell.innerText === '💣') return;
   else var currCell = gBoard[i][j];
 
   var currCellElement = gBoard[i][j].gameElement;
@@ -302,13 +301,13 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     elCell.innerText = 'Lucky';
     isFirstClick = false;
   } else if (!isRightClick && currCell.gameElement === ' ') {
-    console.log('YYYYY');
+
     elCell.innerText = '💣';
     gLivesCount--;
     renderLives();
     checkIfBest(gGameScore);
 
-    //********** BOMB HIT EVENTS *********
+    //********** Game Lost EVENTS *********
   }
   if (gLivesCount === 0) {
     checkIfBest(gGameScore);

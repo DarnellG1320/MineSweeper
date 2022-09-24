@@ -280,6 +280,11 @@ td {
 
 td:hover {
   background-color: rgba(67, 31, 139, 0.58);
+  cursor:pointer;
+}
+
+td:active {
+  cursor:grabbing;
 }
 
 .cell {
@@ -344,15 +349,20 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
+  
   animation: bounce 2s ease 0s infinite alternate forwards;
-  
-  
-  
+
 }
+
 
 button:hover {
   background-color: rgb(67, 31, 139);
   transition: 65ms;
+  cursor:pointer;
+}
+
+button:active {
+  cursor:grabbing;
 }
 
 .rst {
