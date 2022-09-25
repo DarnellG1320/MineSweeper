@@ -164,8 +164,8 @@ function renderBoard(board) {
       if (currCell.gameElement === BOMB && gCellClicked) {
        strHTML += BOMB;
       
-      } else if (currCell.gameElement === '💥' && gisGameLost) {
-        strHTML += '💥';
+      } else if (currCell.gameElement === '💣' && gisGameLost) {
+        strHTML += '💣';
       }
 
       strHTML += '\t</td>\n';
@@ -186,7 +186,7 @@ function showBOMBS(board) {
       currCell = board[i][j];
 
       if (currCell.gameElement === ' ') {
-        currCell.gameElement = '💥';
+        currCell.gameElement = '💣'; 
       }
     }
   }
