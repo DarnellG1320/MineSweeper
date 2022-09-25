@@ -1,3 +1,4 @@
+
 @keyframes MineSweep {
   0% ,
    70%,
@@ -159,6 +160,28 @@ body {
   color: white;
 }
 
+.background-container{
+	position: fixed;
+	top: 0;
+	left:0;
+	bottom: 0;
+	right: 0;
+  z-index: 0;
+}
+
+.stars {
+ background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+ position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: block;
+  	z-index: 0;
+    
+    
+}
+
 .header {
   background-color: rgb(39, 0, 94);
   transition: 200ms;
@@ -188,6 +211,7 @@ body {
     -o-transition: 100ms linear 0s;  
     transition: 100ms linear 0s;  
     outline: 0 none; 
+    z-index: 0;
    
     
 
@@ -211,6 +235,7 @@ h1 {
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
+  z-index: 6;
 }
 
 /* score */
@@ -249,6 +274,7 @@ h2 {
 
 table {
   position: relative;
+  background-color: rgb(67, 31, 139) ;
   /* max-width: 70%; */
   min-width: 450px;
   height: 400px;
@@ -267,6 +293,7 @@ table {
   /* bottom: 450px; */
   animation: animateTable 1.6s linear infinite;
   animation-direction: alternate;
+  z-index: 6;
 }
 
 td {
@@ -276,6 +303,7 @@ td {
   transition: 0.5s;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
+  z-index: 6;
 }
 
 td:hover {
@@ -295,6 +323,7 @@ td:active {
   height: 15px;
   max-height: 20px;
   text-align: center;
+  z-index: 10;
 }
 
 .floor {
@@ -331,6 +360,7 @@ td:active {
   font-size: 1.4em;
   animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
+  z-index: 2;
 }
 
 button {
