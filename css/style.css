@@ -201,7 +201,7 @@ body {
   border-radius: 8px;
   /* box-shadow: 8px 8px 8px black; */
   -webkit-box-reflect: below 1px
-    linear-gradient(transparent, rgba(255, 255, 255, 0.238));
+    linear-gradient(transparent, rgba(255, 255, 255, 0.403));
   /* animation-direction: alternate; */
   text-decoration: none;  
     color: rgb(67, 31, 139);
@@ -231,11 +231,37 @@ body {
 h1 {
   position: absolute;
   top: 25px;
-  right: 53%;
+  right: 50%;
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
   z-index: 6;
+}
+
+.timePlayed {
+  position: absolute;
+  top: 30px;
+
+  left: 57%;
+
+  font-family: 'concert one', cursive;
+  transition: 0.5s;
+  /* left: 12px; */
+  width: 180px;
+  height: 28px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(39, 0, 94);
+  border-radius: 10px;
+  color: aliceblue;
+  border-color: aliceblue;
+  font-weight: bold;
+  font-size: 1.4em;
+  animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
+  animation-direction: alternate;
+  z-index: 2;
 }
 
 /* score */
@@ -246,7 +272,7 @@ h2 {
   left: 55%;
 
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation: MineSweepBGC 4s linear infinite;
+  /* animation: MineSweepBGC 4s linear infinite; */
   animation-direction: alternate;
 }
 
@@ -256,15 +282,20 @@ h2 {
   font-family: 'concert one', cursive;
   left: 55%;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  animation: MineSweepBGC 4s linear infinite;
+  /* animation: MineSweepBGC 4s linear infinite; */
   animation-direction: alternate;
 }
 
 .livesCount {
+  text-align: center;
+  font-family: 'concert one', cursive;
   position: relative;
-  top: -380px;
-  font-family: sans-serif;
-  left: 75%;
+  top: -382px;
+  
+  left: 180px;
+  
+
+  
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   /* animation: bounce 4s linear infinite; */
   /* animation-direction: alternate; */
@@ -337,31 +368,7 @@ td:active {
   z-index: 1;
 }
 
-.timePlayed {
-  position: absolute;
-  top: 30px;
 
-  left: 60%;
-
-  font-family: 'concert one', cursive;
-  transition: 0.5s;
-  /* left: 12px; */
-  width: 180px;
-  height: 28px;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  border-radius: 6px;
-  position: absolute;
-  background-color: rgb(39, 0, 94);
-  border-radius: 10px;
-  color: aliceblue;
-  border-color: aliceblue;
-  font-weight: bold;
-  font-size: 1.4em;
-  animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
-  animation-direction: alternate;
-  z-index: 2;
-}
 
 button {
   position: absolute;
@@ -423,7 +430,7 @@ button:active {
   font-weight: bold;
   position: absolute;
   top: 610px;
-  right: 62%;
+  right: 60%;
 }
 
 label {
