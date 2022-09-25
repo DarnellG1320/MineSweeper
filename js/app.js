@@ -198,9 +198,11 @@ function showZeros(board) {
   for (var i = 0; i < SIZE; i++) {
     for (var j = 0; j < SIZE; j++) {
       currCell = board[i][j];
+      // console.log('currCell: ', currCell);
 
       if (currCell.bombCount === 0) {
-        // currCell.gameElement += '#';
+        
+
       }
     }
   }
@@ -300,6 +302,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
     elCell.innerText = 'Lucky';
     isFirstClick = false;
+    updateScore(1)
   } else if (!isRightClick && currCell.gameElement === ' ') {
 
     elCell.innerText = '💣';
