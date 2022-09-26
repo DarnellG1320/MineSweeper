@@ -19,28 +19,7 @@
   }
 }
 
-@keyframes MineSweepBGC {
-  0% ,
-   70%,
-  60%,
-  20.1%,
-  /* 100%, */
-  65.1%,
-  60%,
-  /* 90.1%, */
-  /* 92%, */
-  10% {
-    color: (67, 31, 139);
-    text-shadow: 8px 1.5px 1.5px rgb(39, 0, 94), 12px 1.5px 1.5px rgb(39, 0, 94),
-      16px 1.5px 1.5px rgb(39, 0, 94);
-  }
-  100% {
-    color: rgb(255, 255, 255);
-    text-shadow: 4px 4px 4px rgb(255, 255, 255);
-  }
-}
-
-@keyframes animateTable {
+@keyframes table-glow {
   0%,
   70%,
   60%,
@@ -60,7 +39,7 @@
   }
 }
 
-@keyframes animate {
+@keyframes td-glow {
   0%,
   70%,
   60%,
@@ -80,26 +59,7 @@
   }
 }
 
-@keyframes scoreFrames {
-  0%,
-  70%,
-  60%,
-  70.1%,
-  60%,
-  65.1%,
-  80%,
-  70.1%,
-  92%,
-  20% {
-    color: (67, 31, 139);
-    text-shadow: none;
-  }
-  100% {
-    color: #fff;
-    text-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
-  }
-} 
-@keyframes bounce {
+@keyframes float {
 	0% {
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 		transform: translatey(0px);
@@ -114,16 +74,7 @@
 	}
 }
 
-@-webkit-keyframes scale-down-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
+
 @keyframes scale-down-center {
   0% {
     -webkit-transform: scale(0.5);
@@ -255,7 +206,6 @@ h1 {
 
   font-family: 'Press Start 2P', cursive;
   transition: 0.5s;
-  /* left: 12px; */
   width: 220px;
   height: 16px;
   margin-bottom: 10px;
@@ -268,8 +218,6 @@ h1 {
   border-color: aliceblue;
   font-weight: bold;
   font-size: 0.8em;
-  /* animation: MineSweepBGC 2s ease 0s infinite alternate forwards; */
-  /* animation-direction: alternate; */
   z-index: 2;
 }
 
@@ -280,8 +228,6 @@ h2 {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8em;
   left: 60%;
-  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  /* animation: MineSweepBGC 4s linear infinite; */
   animation-direction: alternate;
 }
 
@@ -291,9 +237,6 @@ h2 {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
   left: 60%;
-  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  /* animation: MineSweepBGC 4s linear infinite; */
-  animation-direction: alternate;
 }
 
 .lives-count {
@@ -323,7 +266,7 @@ table {
   margin-bottom: 20px;
   top: 60px;
   /* bottom: 450px; */
-  animation: animateTable 1.6s linear infinite;
+  animation: table-glow 1.6s linear infinite;
   animation-direction: alternate;
   z-index: 6;
 }
@@ -335,7 +278,7 @@ td {
   max-height: 50px;
   font-weight: bold;
   transition: 0.5s;
-  animation: animate 4s linear infinite;
+  animation: td-glow 4s linear infinite;
   animation-direction: alternate;
   z-index: 6;
 }
@@ -387,7 +330,7 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
-  animation: bounce 5s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 
 }
 
@@ -422,7 +365,7 @@ button:active {
   font-family: 'concert one', cursive;
   top: 640px;
   right: 55.5%;
-  animation: animate 4s linear infinite;
+  animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
 
@@ -441,8 +384,7 @@ label {
   left: 57%;
   font-weight: bold;
   font-family: 'concert one', cursive;
-  /* animation: MineSweepBGC 8s linear infinite;
-  animation-direction: alternate; */
+ 
 }
 
 select {
@@ -451,7 +393,7 @@ select {
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
   left: 55%;
-  animation: animate 4s linear infinite;
+  animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
 
