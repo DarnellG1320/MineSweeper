@@ -83,6 +83,7 @@ function initGame(SIZE = 12) {
   gBestScore = 0;
   gIsFirstClick = true;
   gisGameLost = false;
+  gGameIsPlaying = false;
 
   gBoard = buildBoard(SIZE);
   renderBoard(gBoard);
@@ -300,7 +301,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   gSelectedElCell = elCell;
 
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
-    elCell.innerText = '🍀';
+    elCell.innerText = '🎂';
     isFirstClick = false;
     updateScore(1)
   } else if (!isRightClick && currCell.gameElement === ' ') {
