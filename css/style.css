@@ -243,7 +243,7 @@ body {
   height: 20px;
   border: 3px solid white;
   border-style: groove;
-  margin-top: 10px;
+
   margin-bottom: 25px;
   padding-bottom: 60px;
   color: rgb(255, 255, 255);
@@ -423,7 +423,7 @@ td:active {
 
 
 button {
-  position: absolute;
+  /* position: relative;s */
   /* bottom: 250px; */
   width: 150px;
   height: 50px;
@@ -455,16 +455,18 @@ button:active {
 }
 
 .rst {
+  text-align: center;
   margin-top: 20px;
   /* left: 276px; */
-  left: 58%;
+  /* left: 58%; */
   top: 665px;
+  left: 55%;
 }
 
 .btnInsert {
-  position: absolute;
+text-align: center;
   top: 665px;
-  right: 60%;
+  right: 55%;
   /* left: 20px; */
 }
 
@@ -472,7 +474,7 @@ button:active {
   position: absolute;
   font-family: 'concert one', cursive;
   top: 640px;
-  right: 60%;
+  right: 55.5%;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
 }
@@ -482,14 +484,14 @@ button:active {
   font-weight: bold;
   position: absolute;
   top: 610px;
-  right: 60%;
+  right: 55%;
 }
 
 label {
   position: absolute;
   top: 611px;
   /* bottom: 260px; */
-  left: 60%;
+  left: 57%;
   font-weight: bold;
   font-family: 'concert one', cursive;
   /* animation: MineSweepBGC 8s linear infinite;
@@ -501,7 +503,7 @@ select {
   top: 641px;
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
-  left: 56%;
+  left: 53.5%;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
   
