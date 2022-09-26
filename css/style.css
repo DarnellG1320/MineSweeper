@@ -1,4 +1,3 @@
-
 @keyframes MineSweep {
   0% ,
    70%,
@@ -103,30 +102,30 @@
 
 @keyframes bounce {
   0%,
-	100% {
-		transform: translateX(0%);
-		transform-origin: 50% 50%;
-	}
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
 
-	15% {
-		transform: translateX(-30px) rotate(-6deg);
-	}
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
 
-	30% {
-		transform: translateX(15px) rotate(6deg);
-	}
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
 
-	45% {
-		transform: translateX(-15px) rotate(-3.6deg);
-	}
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
 
-	60% {
-		transform: translateX(9px) rotate(2.4deg);
-	}
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
 
-	75% {
-		transform: translateX(-6px) rotate(-1.2deg);
-	}
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
 }
 
 @-webkit-keyframes scale-down-center {
@@ -146,48 +145,49 @@
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes move-background {
   from {
-		-webkit-transform: translate3d(0px, 0px, 0px);
-	}
-	to { 
-		-webkit-transform: translate3d(1000px, 0px, 0px);
-	}
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
 }
 @-webkit-keyframes move-background {
   from {
-		-webkit-transform: translate3d(0px, 0px, 0px);
-	}
-	to { 
-		-webkit-transform: translate3d(1000px, 0px, 0px);
-	}
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
 }
 
-@-moz-keyframes move-background {    
-	from {
-		-webkit-transform: translate3d(0px, 0px, 0px);
-	}
-	to { 
-		-webkit-transform: translate3d(1000px, 0px, 0px);
-	}
+@-moz-keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
 }
 
-    @-webkit-keyframes move-background {
-	from {
-		-webkit-transform: translate3d(0px, 0px, 0px);
-	}
-	to { 
-		-webkit-transform: translate3d(1000px, 0px, 0px);
-	}
+@-webkit-keyframes move-background {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(1000px, 0px, 0px);
+  }
 }
 
 .scale-down-center {
-	-webkit-animation: scale-down-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: scale-down-center 0.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 body {
@@ -195,43 +195,45 @@ body {
   color: white;
 }
 
-.background-container{
-	position: fixed;
-	top: 0;
-	left:0;
-	bottom: 0;
-	right: 0;
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 0;
 }
 
 .stars {
- background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
- position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	display: block;
-  	z-index: 0;   
+  background: black
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  z-index: 0;
 }
 
-.twinkling{
-	width:10000px;
-	height: 100%;
-	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
-	background-size: 1000px 1000px;
-    position: absolute;
-    right: 0;
-    top: 120px;
-    bottom: 0;
-    z-index: 0;
-    
-    -moz-animation:move-background 70s linear infinite;
-  -ms-animation:move-background 70s linear infinite;
-  -o-animation:move-background 70s linear infinite;
-  -webkit-animation:move-background 70s linear infinite;
-  animation:move-background 70s linear infinite;
-	
+.twinkling {
+  width: 10000px;
+  height: 100%;
+  background: transparent
+    url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png')
+    repeat;
+  background-size: 1000px 1000px;
+  position: absolute;
+  right: 0;
+  top: 120px;
+  bottom: 0;
+  z-index: 0;
+
+  -moz-animation: move-background 70s linear infinite;
+  -ms-animation: move-background 70s linear infinite;
+  -o-animation: move-background 70s linear infinite;
+  -webkit-animation: move-background 70s linear infinite;
+  animation: move-background 70s linear infinite;
 }
 
 .header {
@@ -255,17 +257,15 @@ body {
   -webkit-box-reflect: below 1px
     linear-gradient(transparent, rgba(255, 255, 255, 0.403));
   /* animation-direction: alternate; */
-  text-decoration: none;  
-    color: rgb(67, 31, 139);
-    text-shadow: none;  
-    -webkit-transition: 100ms linear 0s;  
-    -moz-transition: 100ms linear 0s;  
-    -o-transition: 100ms linear 0s;  
-    transition: 100ms linear 0s;  
-    outline: 0 none; 
-    z-index: 2;
-   
-    
+  text-decoration: none;
+  color: rgb(67, 31, 139);
+  text-shadow: none;
+  -webkit-transition: 100ms linear 0s;
+  -moz-transition: 100ms linear 0s;
+  -o-transition: 100ms linear 0s;
+  transition: 100ms linear 0s;
+  outline: 0 none;
+  z-index: 2;
 
   /* outline: none; */
   /* animation: MineSweep 4s linear infinite; */
@@ -276,16 +276,16 @@ body {
   transition: 130ms;
   text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
     12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
-    color: #fff;  
-    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff; 
+  color: #fff;
+  text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
 h1 {
   position: absolute;
   font-family: 'Press Start 2P', cursive;
-font-size: 1.4em;
+  font-size: 1.4em;
   top: 30px;
-  right: 46%;
+  right: 44%;
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
@@ -294,15 +294,15 @@ font-size: 1.4em;
 
 .timePlayed {
   position: absolute;
-  top: 20px;
+  top: 32px;
 
-  left: 58%;
+  left: 60%;
 
   font-family: 'Press Start 2P', cursive;
   transition: 0.5s;
   /* left: 12px; */
-  width: 180px;
-  height: 28px;
+  width: 220px;
+  height: 16px;
   margin-bottom: 10px;
   margin-top: 20px;
   border-radius: 6px;
@@ -343,27 +343,16 @@ h2 {
 }
 
 .livesCount {
-  
   position: absolute;
   top: 170px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
   left: 60%;
-  
-  /* left: 128px; */
-  
-
-  
-  /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
-  /* animation: bounce 4s linear infinite; */
-  /* animation-direction: alternate; */
-
-
 }
 
 table {
   position: relative;
-  background-color: rgb(67, 31, 139) ;
+  background-color: rgb(67, 31, 139);
   /* max-width: 70%; */
   min-width: 450px;
   height: 400px;
@@ -399,11 +388,11 @@ td {
 
 td:hover {
   background-color: rgba(67, 31, 139, 0.58);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 td:active {
-  cursor:grabbing;
+  cursor: grabbing;
 }
 
 .cell {
@@ -428,8 +417,6 @@ td:active {
   z-index: 1;
 }
 
-
-
 button {
   /* position: relative;s */
   /* bottom: 250px; */
@@ -446,24 +433,21 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
-  
+
   animation: bounce 2s ease 0s infinite alternate forwards;
-
 }
-
 
 button:hover {
   background-color: rgb(67, 31, 139);
   transition: 65ms;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 button:active {
-  cursor:grabbing;
+  cursor: grabbing;
 }
 
 .rst {
-  
   text-align: center;
   margin-top: 20px;
   /* left: 276px; */
@@ -473,7 +457,7 @@ button:active {
 }
 
 .btnInsert {
-text-align: center;
+  text-align: center;
   top: 665px;
   right: 55%;
   /* left: 20px; */
@@ -500,7 +484,7 @@ label {
   position: absolute;
   top: 611px;
   /* bottom: 260px; */
-  left: 57%;
+  left: 57.5%;
   font-weight: bold;
   font-family: 'concert one', cursive;
   /* animation: MineSweepBGC 8s linear infinite;
@@ -515,7 +499,6 @@ select {
   left: 53.5%;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
-  
 }
 
 option {
