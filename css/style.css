@@ -292,7 +292,7 @@ h1 {
   z-index: 6;
 }
 
-.timePlayed {
+.time-played {
   position: absolute;
   top: 32px;
 
@@ -331,7 +331,7 @@ h2 {
   animation-direction: alternate;
 }
 
-.bestScore {
+.best-score {
   position: absolute;
   top: 148px;
   font-family: 'Press Start 2P', cursive;
@@ -342,7 +342,7 @@ h2 {
   animation-direction: alternate;
 }
 
-.livesCount {
+.lives-count {
   position: absolute;
   top: 170px;
   font-family: 'Press Start 2P', cursive;
@@ -447,7 +447,7 @@ button:active {
   cursor: grabbing;
 }
 
-.rst {
+.restart {
   text-align: center;
   margin-top: 20px;
   /* left: 276px; */
@@ -456,14 +456,14 @@ button:active {
   left: 55%;
 }
 
-.btnInsert {
+.submit-button {
   text-align: center;
   top: 665px;
   right: 55%;
   /* left: 20px; */
 }
 
-.inputKey {
+.input-field {
   position: absolute;
   font-family: 'concert one', cursive;
   top: 640px;
@@ -472,19 +472,19 @@ button:active {
   animation-direction: alternate;
 }
 
-.isNamed {
+.player-name {
   font-family: 'concert one', cursive;
   font-weight: bold;
   position: absolute;
   top: 610px;
-  right: 55%;
+  right: 55.5%;
 }
 
 label {
   position: absolute;
   top: 611px;
   /* bottom: 260px; */
-  left: 57.5%;
+  left: 57%;
   font-weight: bold;
   font-family: 'concert one', cursive;
   /* animation: MineSweepBGC 8s linear infinite;
@@ -496,7 +496,7 @@ select {
   top: 641px;
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
-  left: 53.5%;
+  left: 53.2%;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
 }

@@ -40,7 +40,7 @@ function startTimer() {
   clearInterval(gIntervalId);
   var startTime = Date.now();
   gIntervalId = setInterval(function () {
-    var elTime = document.querySelector('.timePlayed');
+    var elTime = document.querySelector('.time-played');
     elTime.innerText = 'Time Played:' + '  ';
     var secs = ((Date.now() - startTime) / 1000).toFixed(0);
     if (secs < 90) {
@@ -134,7 +134,7 @@ function getCellCoord(strCellId) {
 
 
 function renderLives(){
-  var livesCount = document.getElementById('livesCount')
+  var livesCount = document.getElementById('lives-count')
   livesCount.innerHTML = null;
   livesCount.innerHTML += `${'Lives Left'}: ${gLivesCount}`;
 

@@ -39,31 +39,31 @@ window.oncontextmenu = function () {
 
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 
-var bestScore = document.getElementById('bestScore');
+var bestScore = document.getElementById('best-score');
 
 bestScore.innerHTML = null;
 bestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
 var key = localStorage.getItem('Name', key);
 // **** DOM name field and input field ****
 
-var inputKey = document.getElementById('inputKey');
-var btnInsert = document.getElementById('btnInsert');
-var isNamed = document.getElementById('isNamed');
+var inputKey = document.getElementById('input-field');
+var btnInsert = document.getElementById('submit-button');
+var playerName = document.getElementById('player-name');
 
-  isNamed.innerHTML += `${'Player Name'}: ${key}`;
+  playerName.innerHTML += `${'Player Name'}: ${key}`;
   btnInsert.onclick = function () {
   var key = inputKey.value;
 
   if (key) {
     localStorage.setItem('Name', key);
   }
-  isNamed.innerHTML = null;
-  isNamed.innerHTML += `${'Player Name'}: ${key}`;
+  playerName.innerHTML = null;
+  playerName.innerHTML += `${'Player Name'}: ${key}`;
   console.log(localStorage);
 };
 
 function changeFunc() {
-  var selectBox = document.getElementById('selectBox');
+  var selectBox = document.getElementById('select-box');
   SIZE = +selectBox.options[selectBox.selectedIndex].value;
   scoreToWin = 0;
   initGame();
@@ -300,7 +300,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   gSelectedElCell = elCell;
 
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
-    elCell.innerText = 'Lucky';
+    elCell.innerText = '🍀';
     isFirstClick = false;
     updateScore(1)
   } else if (!isRightClick && currCell.gameElement === ' ') {
