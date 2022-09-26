@@ -270,7 +270,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   elCell.classList.add('scale-down-center');
 
   var BOMBCount = countBombsAround(gBoard, i, j);
-  console.log('BOMBCount: ', BOMBCount);
+  // console.log('BOMBCount: ', BOMBCount);
 
   if (gBoard[i][j].gameElement !== BOMB) {
     elCell.innerText = BOMBCount;

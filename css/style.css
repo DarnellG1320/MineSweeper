@@ -157,32 +157,6 @@
     -webkit-transform: translate3d(1000px, 0px, 0px);
   }
 }
-@-webkit-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
-  }
-}
-
-@-moz-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
-  }
-}
-
-@-webkit-keyframes move-background {
-  from {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-  }
-  to {
-    -webkit-transform: translate3d(1000px, 0px, 0px);
-  }
-}
 
 .scale-down-center {
   -webkit-animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
@@ -253,10 +227,8 @@ body {
   text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
     12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
   border-radius: 8px;
-  /* box-shadow: 8px 8px 8px black; */
   -webkit-box-reflect: below 1px
     linear-gradient(transparent, rgba(255, 255, 255, 0.403));
-  /* animation-direction: alternate; */
   text-decoration: none;
   color: rgb(67, 31, 139);
   text-shadow: none;
@@ -266,9 +238,6 @@ body {
   transition: 100ms linear 0s;
   outline: 0 none;
   z-index: 2;
-
-  /* outline: none; */
-  /* animation: MineSweep 4s linear infinite; */
 }
 
 .header:hover {
@@ -313,8 +282,8 @@ h1 {
   border-color: aliceblue;
   font-weight: bold;
   font-size: 0.8em;
-  animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
-  animation-direction: alternate;
+  /* animation: MineSweepBGC 2s ease 0s infinite alternate forwards; */
+  /* animation-direction: alternate; */
   z-index: 2;
 }
 
@@ -325,7 +294,6 @@ h2 {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8em;
   left: 60%;
-
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   /* animation: MineSweepBGC 4s linear infinite; */
   animation-direction: alternate;
@@ -433,7 +401,6 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
-
   animation: bounce 2s ease 0s infinite alternate forwards;
 }
 
