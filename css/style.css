@@ -282,8 +282,10 @@ body {
 
 h1 {
   position: absolute;
-  top: 25px;
-  right: 50%;
+  font-family: 'Press Start 2P', cursive;
+font-size: 1.4em;
+  top: 30px;
+  right: 46%;
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
@@ -292,11 +294,11 @@ h1 {
 
 .timePlayed {
   position: absolute;
-  top: 30px;
+  top: 20px;
 
-  left: 57%;
+  left: 58%;
 
-  font-family: 'concert one', cursive;
+  font-family: 'Press Start 2P', cursive;
   transition: 0.5s;
   /* left: 12px; */
   width: 180px;
@@ -310,7 +312,7 @@ h1 {
   color: aliceblue;
   border-color: aliceblue;
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 0.8em;
   animation: MineSweepBGC 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
   z-index: 2;
@@ -319,9 +321,10 @@ h1 {
 /* score */
 h2 {
   position: absolute;
-  top: 135px;
-  font-family: 'concert one', cursive;
-  left: 55%;
+  top: 110px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  left: 60%;
 
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   /* animation: MineSweepBGC 4s linear infinite; */
@@ -330,21 +333,24 @@ h2 {
 
 .bestScore {
   position: absolute;
-  top: 135px;
-  font-family: 'concert one', cursive;
-  left: 55%;
+  top: 148px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+  left: 60%;
   /* -webkit-box-reflect: below 1px linear-gradient(transparent, white); */
   /* animation: MineSweepBGC 4s linear infinite; */
   animation-direction: alternate;
 }
 
 .livesCount {
-  text-align: center;
-  font-family: 'concert one', cursive;
-  position: relative;
-  top: -382px;
   
-  left: 180px;
+  position: absolute;
+  top: 170px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+  left: 60%;
+  
+  /* left: 128px; */
   
 
   
@@ -380,6 +386,8 @@ table {
 }
 
 td {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
   max-width: 50px;
   max-height: 50px;
   font-weight: bold;
@@ -455,6 +463,7 @@ button:active {
 }
 
 .rst {
+  
   text-align: center;
   margin-top: 20px;
   /* left: 276px; */
