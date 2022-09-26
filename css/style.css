@@ -98,34 +98,20 @@
     color: #fff;
     text-shadow: 5px 5px 5px 5px rgb(255, 255, 255);
   }
-}
-
+} 
 @keyframes bounce {
-  0%,
-  100% {
-    transform: translateX(0%);
-    transform-origin: 50% 50%;
-  }
-
-  15% {
-    transform: translateX(-30px) rotate(-6deg);
-  }
-
-  30% {
-    transform: translateX(15px) rotate(6deg);
-  }
-
-  45% {
-    transform: translateX(-15px) rotate(-3.6deg);
-  }
-
-  60% {
-    transform: translateX(9px) rotate(2.4deg);
-  }
-
-  75% {
-    transform: translateX(-6px) rotate(-1.2deg);
-  }
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-15px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
 }
 
 @-webkit-keyframes scale-down-center {
@@ -401,7 +387,8 @@ button {
   font-weight: bold;
   font-size: 1.2em;
   top: 673px;
-  animation: bounce 2s ease 0s infinite alternate forwards;
+  animation: bounce 5s ease-in-out infinite;
+
 }
 
 button:hover {
@@ -463,7 +450,7 @@ select {
   top: 641px;
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
-  left: 53.2%;
+  left: 55%;
   animation: animate 4s linear infinite;
   animation-direction: alternate;
 }
