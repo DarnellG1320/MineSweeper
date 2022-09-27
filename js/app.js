@@ -16,7 +16,7 @@ var gTotalTilesCount = 0;
 var gCellClicked = false;
 var gIsFirstClick = true;
 var gisGameLost = false;
-var gGameIsPlaying = false;
+var gIsGamePlaying = false;
 var gLivesCount = 3;
 var gBestScore = 0;
 var scoreToWin = 0;
@@ -24,41 +24,41 @@ var scoreToWin = 0;
 var gTotalBOMBCount = 2;
 var SIZE = 8;
 var gIntervalId = null;
-var gSelectedElCell;
+var gElSelectedCell;
 var gIsRightClick = false;
 var gGameScore = 0;
 var gBoard;
 
-//  ****** right click events *****
+//  ****** right click cancel default menu *****
 
 window.oncontextmenu = function () {
-  return false; // cancel default menu
+  return false;
 };
 
 //**** Local Storage *****
 
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 
-var bestScore = document.getElementById('best-score');
+var elBestScore = document.getElementById('best-score');
 
-bestScore.innerHTML = null;
-bestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
+elBestScore.innerHTML = null;
+elBestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
 var key = localStorage.getItem('Name', key);
 // **** DOM name field and input field ****
 
-var inputKey = document.getElementById('input-field');
-var btnInsert = document.getElementById('submit-button');
-var playerName = document.getElementById('player-name');
+var elInputField = document.getElementById('input-field');
+var elSubmitButton = document.getElementById('submit-button');
+var elPlayerName = document.getElementById('player-name');
 
-  playerName.innerHTML += `${'Player Name'}: ${key}`;
-  btnInsert.onclick = function () {
-  var key = inputKey.value;
+  elPlayerName.innerHTML += `${'Player Name'}: ${key}`;
+  elSubmitButton.onclick = function () {
+  var key = elInputField.value;
 
   if (key) {
     localStorage.setItem('Name', key);
   }
-  playerName.innerHTML = null;
-  playerName.innerHTML += `${'Player Name'}: ${key}`;
+  elPlayerName.innerHTML = null;
+  elPlayerName.innerHTML += `${'Player Name'}: ${key}`;
   console.log(localStorage);
 };
 
@@ -83,7 +83,7 @@ function initGame(SIZE = 12) {
   gBestScore = 0;
   gIsFirstClick = true;
   gisGameLost = false;
-  gGameIsPlaying = false;
+  gIsGamePlaying = false;
 
   gBoard = buildBoard(SIZE);
   renderBoard(gBoard);
@@ -219,8 +219,8 @@ function checkIfBest() {
 
   if (storedBestScore > gGameScore) return;
   else localStorage.setItem('Best Score', gGameScore);
-  bestScore.innerHTML = null;
-  bestScore.innerHTML += `${'Best Score'}: ${gGameScore}`;
+  elBestScore.innerHTML = null;
+  elBestScore.innerHTML += `${'Best Score'}: ${gGameScore}`;
 }
 
 function hideTiles(board) {
@@ -260,10 +260,10 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     isFirstClick = false;
   }
 
-  if (!gGameIsPlaying) {
+  if (!gIsGamePlaying) {
     startTimer();
     checkIfBest();
-    gGameIsPlaying = true;
+    gIsGamePlaying = true;
 
     //***** showZeros not working yet *******
   } else if (gisGameLost) return;
@@ -298,7 +298,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   }
 
   elCell.classList.add('selected');
-  gSelectedElCell = elCell;
+  gElSelectedCell = elCell;
 
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
     elCell.innerText = '🎂';
@@ -316,7 +316,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (gLivesCount === 0) {
     checkIfBest(gGameScore);
     gisGameLost = true;
-    gGameIsPlaying = false;
+    gIsGamePlaying = false;
     showBOMBS(gBoard);
     showZeros(gBoard);
     clearInterval(gIntervalId);
