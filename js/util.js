@@ -71,7 +71,7 @@ function updateScore(score) {
 }
 
 function countBombsAround(board, rowIdx, colIdx) {
-  var BOMBCount = 0;
+  var BombCount = 0;
 
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
     if (i < 0 || i >= SIZE) continue;
@@ -81,10 +81,10 @@ function countBombsAround(board, rowIdx, colIdx) {
       if (i === rowIdx && j === colIdx) continue;
 
       var currCell = board[i][j];
-      if (currCell.gameElement === BOMB) BOMBCount++;
+      if (currCell.gameElement === BOMB) BombCount++;
     }
   }
-  return BOMBCount;
+  return BombCount;
 }
 
 
@@ -143,7 +143,7 @@ function renderLives(){
 function calculateTileAmt() {
   var tilesSum = 0
   // debugger
- tilesSum = (gTotalTilesCount - gTotalBOMBCount )
+ tilesSum = (gTotalTilesCount - gTotalBombCount )
  console.log('tilesSum: ', tilesSum);
  return tilesSum
 }

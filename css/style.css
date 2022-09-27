@@ -191,7 +191,7 @@ h1 {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.4em;
   top: 30px;
-  right: 44%;
+  right: 44.5%;
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
@@ -201,10 +201,11 @@ h1 {
 .time-played {
   position: absolute;
   top: 32px;
-
-  left: 60%;
+  left: 59%;
 
   font-family: 'Press Start 2P', cursive;
+  text-shadow: 4px 1.5px 1.5px rgb(67, 31, 139),
+    8px 1.5px 1.5px rgb(67, 31, 139), 10px 1.5px 1.5px rgb(67, 31, 139);
   transition: 0.5s;
   width: 220px;
   height: 16px;
@@ -227,7 +228,7 @@ h2 {
   top: 110px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8em;
-  left: 60%;
+  left: 59%;
   animation-direction: alternate;
 }
 
@@ -236,7 +237,7 @@ h2 {
   top: 148px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
-  left: 60%;
+  left: 59%;
 }
 
 .lives-count {
@@ -244,7 +245,7 @@ h2 {
   top: 170px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
-  left: 60%;
+  left: 59%;
 }
 
 table {
@@ -273,7 +274,7 @@ table {
 
 td {
   font-family: 'Press Start 2P', cursive;
-  font-size: 0.6em;
+  font-size: 0.7em;
   max-width: 50px;
   max-height: 50px;
   font-weight: bold;
@@ -296,7 +297,7 @@ td:active {
   margin: 5px;
   width: 40px;
   min-width: 20px;
-  max-width: 40px;
+  max-width: 0px;
   height: 15px;
   max-height: 20px;
   text-align: center;
@@ -364,7 +365,7 @@ button:active {
   position: absolute;
   font-family: 'concert one', cursive;
   top: 640px;
-  right: 55.5%;
+  right: 55.3%;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
@@ -392,7 +393,7 @@ select {
   top: 641px;
   /* bottom: 260px; */
   font-family: 'concert one', cursive;
-  left: 55%;
+  left: 54.8%;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
