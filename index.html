@@ -11,49 +11,50 @@
 
 <body onload="initGame()">
     <div class="background-container">
+
         <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" alt=""> -->
         <div class="stars"></div>
         <div class="twinkling"></div>
         <div class="clouds"></div>
-        
+    </div>
+
     <div class="header">
-        <h1>MineSweeper</h1>
+        <h1 class="minesweeper-header">MineSweeper</h1>
+        <span class="stats-container">
+            <h2 class="score">Score: <span>0</span></h2>
+            <span class="best-score" id="best-score"></span>
+            <span class="lives-count" id="lives-count"></span>
+        </span>
+        <span class="time-played"></span>
 
     </div>
-    <div class="everything">
+
+
     <table>
         <tbody class="board"></tbody>
     </table>
 
 
-    <label for="select-difficultly">Select Difficultly:</label>
-
-    <button class="restart" onclick="restartGame(this)">Restart</button>
-
-    <h2>Score: <span>0</span></h2>
-
-    <div class="time-played">
 
 
-        <div class="container"> </div>
-        <span class=""></span>
 
+
+
+    <div class="bottom-gui-container">
+        <!-- <label for="select-difficultly">Select Difficultly:</label> -->
+        <select id="select-box" onchange="changeFunc();">
+            <option value="">Please Select Difficultly</option>
+            <option value="4">Easy</option>
+            <option value="8">Medium</option>
+            <option value="12">Professional</option>
+            <option value="16">Ridiculous</option>
+        </select>
+        <input class="input-field" id="input-field" placeholder="Enter Name...">
+        <button class="restart-button" onclick="restartGame(this)">Restart</button>
+        <button type="button" class="submit-button" id="submit-button">Submit</button>
+        <div class="player-name" id="player-name"> </div>
     </div>
 
-    <select id="select-box" onchange="changeFunc();">
-        <option value="">Please Select Difficultly</option>
-        <option value="4">Easy</option>
-        <option value="8">Medium</option>
-        <option value="12">Professional</option>
-        <option value="16">Ridiculous</option>
-
-    </select>
-    <input class="input-field" id="input-field" type="text" placeholder="Enter Name...">
-    <button type="button" class="submit-button" id="submit-button">Submit</button>
-    <div class="player-name" id="player-name"> </div>
-    <div class="best-score" id="best-score"></div>
-    <div class="lives-count" id="lives-count"></div>
-</div>
 
     <script src="js/util.js"></script>
     <script src="js/app.js"></script>

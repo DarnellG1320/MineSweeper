@@ -35,7 +35,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-
 function startTimer() {
   clearInterval(gIntervalId);
   var startTime = Date.now();
@@ -55,7 +54,6 @@ function startTimer() {
   }, 10);
 }
 
-
 // Convert a location object {i, j} to a selector and render a value in that element
 function renderCell(location, value) {
   var cellSelector = '.' + getClassName(location);
@@ -64,9 +62,9 @@ function renderCell(location, value) {
 }
 
 function updateScore(score) {
-  gBestScore++
+  gBestScore++;
   gGameScore += score;
-  
+
   document.querySelector('h2 span').innerText = gGameScore;
 }
 
@@ -87,9 +85,7 @@ function countBombsAround(board, rowIdx, colIdx) {
   return BombCount;
 }
 
-
 // function countZerosAround(board, rowIdx, colIdx) {
-  
 
 //   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
 //     if (i < 0 || i >= SIZE) continue;
@@ -107,7 +103,6 @@ function countBombsAround(board, rowIdx, colIdx) {
 //   }
 //   return currZeroCellArr;
 // }
-
 
 function markCells(coords) {
   // query select them one by one and add mark
@@ -132,18 +127,16 @@ function getCellCoord(strCellId) {
   return coord;
 }
 
-
-function renderLives(){
-  var livesCount = document.getElementById('lives-count')
+function renderLives() {
+  var livesCount = document.getElementById('lives-count');
   livesCount.innerHTML = null;
   livesCount.innerHTML += `${'Lives Left'}: ${gLivesCount}`;
-
 }
 
 function calculateTileAmt() {
-  var tilesSum = 0
+  var tilesSum = 0;
   // debugger
- tilesSum = (gTotalTilesCount - gTotalBombCount )
- console.log('tilesSum: ', tilesSum);
- return tilesSum
+  tilesSum = gTotalTilesCount - gTotalBombCount;
+  console.log('tilesSum: ', tilesSum);
+  return tilesSum;
 }

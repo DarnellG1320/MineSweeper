@@ -1,13 +1,10 @@
 @keyframes MineSweep {
-  0% ,
-   70%,
+  0%,
+  70%,
   60%,
   20.1%,
-  /* 100%, */
   65.1%,
   60%,
-  /* 90.1%, */
-  /* 92%, */
   10% {
     color: (67, 31, 139);
     text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
@@ -60,20 +57,19 @@
 }
 
 @keyframes float {
-	0% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px);
-	}
-	50% {
-		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-		transform: translatey(-15px);
-	}
-	100% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-		transform: translatey(0px);
-	}
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.4);
+    transform: translatey(-15px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
 }
-
 
 @keyframes scale-down-center {
   0% {
@@ -104,6 +100,10 @@
 body {
   background-color: rgb(39, 0, 94);
   color: white;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
 
 .background-container {
@@ -139,7 +139,6 @@ body {
   top: 120px;
   bottom: 0;
   z-index: 0;
-
   -moz-animation: move-background 70s linear infinite;
   -ms-animation: move-background 70s linear infinite;
   -o-animation: move-background 70s linear infinite;
@@ -148,30 +147,27 @@ body {
 }
 
 .header {
+  display: flex;
+  padding: 10px;
+  margin: 0;
+  min-height: 80px;
+  max-height: max-content;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-evenly;
   background-color: rgb(39, 0, 94);
-  transition: 200ms;
+  background-image: linear-gradient(rgb(39, 0, 94), rgb(11, 0, 25));
   font-family: sans-serif;
-  padding: 20px;
-  border-bottom: 10px 10px solid rgb(19, 2, 52);
-  height: 20px;
   border: 3px solid white;
   border-style: groove;
-
-  margin-bottom: 25px;
-  padding-bottom: 60px;
-  color: rgb(255, 255, 255);
   font-size: 1em;
-  text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
-    12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
   border-radius: 8px;
   -webkit-box-reflect: below 1px
     linear-gradient(transparent, rgba(255, 255, 255, 0.403));
   text-decoration: none;
   color: rgb(67, 31, 139);
   text-shadow: none;
-  -webkit-transition: 100ms linear 0s;
-  -moz-transition: 100ms linear 0s;
-  -o-transition: 100ms linear 0s;
   transition: 100ms linear 0s;
   outline: 0 none;
   z-index: 2;
@@ -186,102 +182,98 @@ body {
   text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
-h1 {
-  position: absolute;
+.header > * {
+  flex-grow: 1;
+  flex-basis: 134px;
+  text-align: center;
+}
+
+.minesweeper-header {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1.4em;
-  top: 30px;
-  right: 44.5%;
+  font-size: 1.5em;
   border-radius: 8px;
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
-  z-index: 6;
+  order: 1;
 }
 
 .time-played {
-  position: absolute;
-  top: 32px;
-  left: 59%;
-
   font-family: 'Press Start 2P', cursive;
-  text-shadow: 4px 1.5px 1.5px rgb(67, 31, 139),
-    8px 1.5px 1.5px rgb(67, 31, 139), 10px 1.5px 1.5px rgb(67, 31, 139);
+  margin-bottom: 8px;
+  font-size: 0.8em;
+  /* text-shadow: 4px 1.5px 1.5px rgb(67, 31, 139),
+    8px 1.5px 1.5px rgb(67, 31, 139), 10px 1.5px 1.5px rgb(67, 31, 139); */
   transition: 0.5s;
-  width: 220px;
-  height: 16px;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  border-radius: 6px;
-  position: absolute;
-  background-color: rgb(39, 0, 94);
+  height: 1rem;
   border-radius: 10px;
   color: aliceblue;
   border-color: aliceblue;
   font-weight: bold;
-  font-size: 0.8em;
-  z-index: 2;
+  order: 2;
 }
 
-/* score */
-h2 {
-  position: absolute;
-  top: 110px;
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-basis: 150px;
+  order: 0;
+}
+
+/* .stats-container > * {} */
+
+.score {
+  flex-basis: content;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.8em;
-  left: 59%;
+  color: aliceblue;
   animation-direction: alternate;
 }
 
 .best-score {
-  position: absolute;
-  top: 148px;
+  color: aliceblue;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
-  left: 59%;
 }
 
 .lives-count {
-  position: absolute;
-  top: 170px;
   font-family: 'Press Start 2P', cursive;
   font-size: 0.6em;
-  left: 59%;
+  color: aliceblue;
 }
 
 table {
   position: relative;
   background-color: rgb(67, 31, 139);
-  /* max-width: 70%; */
-  min-width: 450px;
-  height: 400px;
+  min-width: 40vh;
+  height: 40vh;
   padding: 4px;
   border-radius: 6px;
   border: 3px white;
   border-style: groove;
   transition: 0.5s;
   box-shadow: 6px 6px 6px black;
-  text-align: center;
-  margin-top: 20px;
   margin: auto;
-  /* margin-left: 12px; */
-  margin-bottom: 20px;
-  top: 60px;
-  /* bottom: 450px; */
   animation: table-glow 1.6s linear infinite;
   animation-direction: alternate;
-  z-index: 6;
 }
 
 td {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.7em;
-  max-width: 50px;
-  max-height: 50px;
   font-weight: bold;
   transition: 0.5s;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
-  z-index: 6;
+  margin: 5px;
+  width: 40px;
+  max-width: 0px;
+  height: 15px;
+  max-height: 20px;
+  text-align: center;
 }
 
 td:hover {
@@ -293,21 +285,6 @@ td:active {
   cursor: grabbing;
 }
 
-.cell {
-  margin: 5px;
-  width: 40px;
-  min-width: 20px;
-  max-width: 0px;
-  height: 15px;
-  max-height: 20px;
-  text-align: center;
-  z-index: 10;
-}
-
-.floor {
-  background-color: rgb(67, 31, 139);
-  z-index: 0;
-}
 .wall {
   background-color: rgba(211, 211, 211, 0.439);
   border: 2px solid rgba(255, 255, 255, 0.509);
@@ -316,23 +293,17 @@ td:active {
 }
 
 button {
-  /* position: relative;s */
-  /* bottom: 250px; */
   width: 150px;
   height: 50px;
-  margin-bottom: 10px;
-  margin-top: 20px;
   border-radius: 6px;
-  position: absolute;
   background-color: rgb(39, 0, 94);
+  background-image: linear-gradient(rgb(39, 0, 94), rgb(11, 0, 25));
   border-radius: 10px;
   color: aliceblue;
   border-color: aliceblue;
   font-weight: bold;
   font-size: 1.2em;
-  top: 673px;
   animation: float 5s ease-in-out infinite;
-
 }
 
 button:hover {
@@ -345,55 +316,52 @@ button:active {
   cursor: grabbing;
 }
 
-.restart {
-  text-align: center;
-  margin-top: 20px;
-  /* left: 276px; */
-  /* left: 58%; */
-  top: 665px;
-  left: 55%;
+.restart-button {
+  order: 3;
 }
 
 .submit-button {
-  text-align: center;
-  top: 665px;
-  right: 55%;
-  /* left: 20px; */
+  order: 4;
+}
+
+.bottom-gui-container {
+  margin: auto;
+  margin-top: -75px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  min-height: 80px;
+  max-width: 400px;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-gui-container > * {
+  z-index: 10;
 }
 
 .input-field {
-  position: absolute;
   font-family: 'concert one', cursive;
-  top: 640px;
-  right: 55.3%;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
+  order: 2;
 }
 
 .player-name {
   font-family: 'concert one', cursive;
   font-weight: bold;
-  position: absolute;
-  top: 610px;
-  right: 55.5%;
+  order: 5;
 }
 
 label {
-  position: absolute;
-  top: 611px;
-  /* bottom: 260px; */
-  left: 57%;
   font-weight: bold;
   font-family: 'concert one', cursive;
- 
 }
 
 select {
-  position: absolute;
-  top: 641px;
-  /* bottom: 260px; */
   font-family: 'concert one', cursive;
-  left: 54.8%;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
@@ -401,12 +369,94 @@ select {
 option {
   font-family: 'concert one', cursive;
   font-weight: bold;
+  order: 1;
 }
 
-.mark {
-  background-color: #fff;
+@media (min-width: 992px) {
+  .stats-container {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .minesweeper-header {
+    font-size: 2em;
+  }
 }
 
-.selected {
-  background-color: rgb(224, 117, 117);
+@media (min-width: 735px) {
+  .time-played {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 692px) {
+  table {
+    width: 50vh;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 618px) {
+  .header {
+    flex-direction: column;
+    -webkit-box-reflect: below 0.5px
+      linear-gradient(transparent, rgba(255, 255, 255, 0));
+  }
+
+  .header > * {
+    flex-basis: min-content;
+  }
+
+  .stats-container {
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .minesweeper-header {
+    order: 0;
+    font-size: 1.6em;
+  }
+
+  table {
+    margin-top: -75px;
+  }
+
+  .time-played {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 488px) {
+  .stats-container {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: -10px;
+  }
+
+  .bottom-gui-container {
+    flex-direction: column;
+  }
+
+  .submit-button {
+    order: 3;
+  }
+
+  .restart {
+    order: 4;
+  }
+
+  .player-name {
+    order: -1;
+  }
+}
+
+@media (max-width: 408px) {
+  table {
+    min-width: 30vh;
+    height: 30vh;
+  }
+
+  td {
+    min-width: max-content;
+  }
 }

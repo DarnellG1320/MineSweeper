@@ -7,8 +7,6 @@ var BOMB = ' ';
 
 const TILE_STATUSES = {
   HIDDEN: 'hidden',
-  MINE: 'mine',
-  NUMBER: 'number',
   MARKED: 'marked',
 };
 
@@ -84,7 +82,7 @@ function initGame(SIZE) {
   gIsGamePlaying = false;
 
   gBoard = buildBoard(SIZE);
-  
+
   renderBoard(gBoard);
   // scoreToWin = calculateTileAmt()
   hideTiles(gBoard);
@@ -223,7 +221,12 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
-  if (elCell.innerText === '🇧🇦' || elCell.innerText === '💣') return;
+  if (
+    elCell.innerText === '🇧🇦' ||
+    elCell.innerText === '💣' ||
+    elCell.innerText === '🎂'
+  )
+    return;
   else var currCell = gBoard[i][j];
 
   var currCellElement = gBoard[i][j].gameElement;
@@ -232,7 +235,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     elCell.innerText = '🇧🇦';
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
     elCell.classList.add('scale-down-center');
-    renderBoard;
+    renderBoard();
     checkWin();
     return;
   }
