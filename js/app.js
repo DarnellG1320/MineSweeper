@@ -1,14 +1,8 @@
 'use strict';
 
-const TILE = 'WALL';
-const FLOOR = 'FLOOR';
+const TILE = 'TILE';
 
 var BOMB = ' ';
-
-const TILE_STATUSES = {
-  HIDDEN: 'hidden',
-  MARKED: 'marked',
-};
 
 var gTotalTilesCount = 0;
 var gCellClicked = false;
@@ -99,7 +93,7 @@ function buildBoard() {
 
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
-      board[i][j] = { i, j, type: TILE, gameElement: null, bombCount: null };
+      board[i][j] = { i, j, gameElement: null, bombCount: null };
       gTotalTilesCount++;
     }
   }
@@ -143,18 +137,11 @@ function renderBoard(board) {
 
       var cellClass = getClassName({ i, j });
 
-      // if cellClicked - remove status hidden
-      currCell.status = 'HIDDEN';
-      if (currCell.status === 'HIDDEN')
-        if (currCell.type === FLOOR) cellClass += ' floor';
-        else if (currCell.type === TILE) cellClass += ' wall';
       //prettier-ignore
-      strHTML += `\t<td data-type="status" class="cell ${cellClass}" 
+      strHTML += `\t<td class="cell ${cellClass}" 
       onclick="cellClicked( this, event, ${i}, ${j},${isFalse})" oncontextmenu="cellClicked(this, event, ${i}, ${j},${isTrue})">`;
 
-      if (currCell.gameElement === BOMB && gCellClicked) {
-        strHTML += BOMB;
-      } else if (currCell.gameElement === '💣' && gisGameLost) {
+      if (currCell.gameElement === '💣' && gisGameLost) {
         strHTML += '💣';
       }
 
@@ -221,12 +208,7 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
-  if (
-    elCell.innerText === '🇧🇦' ||
-    elCell.innerText === '💣' ||
-    elCell.innerText === '🎂'
-  )
-    return;
+  if (elCell.innerText) return;
   else var currCell = gBoard[i][j];
 
   var currCellElement = gBoard[i][j].gameElement;
@@ -278,12 +260,11 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   /// ***** remove hidden *******
 
   gCellClicked = !gCellClicked;
-  if (gBoard[i][j].status === 'HIDDEN')
-    if (gBoard[i][j].status === 'marked') return;
-  if (gBoard[i][j].status !== 'marked') {
-    gBoard[i][j].status = 'marked';
-    if (gBoard[i][j].gameElement !== BOMB) updateScore(1);
-  }
+  // if (gBoard[i][j].status === 'HIDDEN')
+  // if (gBoard[i][j].status === 'marked') return;
+  // if (gBoard[i][j].status !== 'marked')
+  //   gBoard[i][j].status = 'marked';
+  if (gBoard[i][j].gameElement !== BOMB) updateScore(1);
 
   elCell.classList.add('selected');
   gElSelectedCell = elCell;

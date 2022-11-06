@@ -1,3 +1,36 @@
+:root {
+  --ff-primary: 'Press Start 2P', cursive;
+  --ff-secondary: 'concert one', cursive;
+
+  --fs-m: 0.8em;
+  --fs-s: 0.6em;
+  --fs-l: 2em;
+
+  --br-s: 6px;
+  --br-m: 8px;
+  --br-l: 10px;
+
+  --color-dark-primary: rgb(39, 0, 94);
+  --color-dark-secondary: rgba(40, 14, 87, 0.958);
+  --color-light-primary: rgb(67, 31, 139);
+  --color-light-secondary: rgba(67, 31, 139, 0.58);
+  --shadow1: 8px 1.5px 1.5px var(--color-light-primary),
+    12px 1.5px 1.5px var(--color-light-primary),
+    16px 1.5px 1.5px var(--color-light-primary);
+  --shadow2: 8px 4px 4px var(--color-dark-secondary),
+    12px 4px 4px var(--color-dark-secondary),
+    16px 4px 4px var(--color-dark-secondary);
+}
+
+body {
+  background-color: var(--color-dark-primary);
+  color: white;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
 @keyframes MineSweep {
   0%,
   70%,
@@ -6,9 +39,7 @@
   65.1%,
   60%,
   10% {
-    color: (67, 31, 139);
-    text-shadow: 8px 1.5px 1.5px rgb(67, 31, 139),
-      12px 1.5px 1.5px rgb(67, 31, 139), 16px 1.5px 1.5px rgb(67, 31, 139);
+    text-shadow: var(--shadow1);
   }
   100% {
     color: rgb(255, 255, 255);
@@ -27,7 +58,6 @@
   50.1%,
   60%,
   20% {
-    color: (67, 31, 139);
     box-shadow: none;
   }
   100% {
@@ -47,7 +77,6 @@
   70.1%,
   92%,
   20% {
-    color: (67, 31, 139);
     box-shadow: none;
   }
   100% {
@@ -97,15 +126,6 @@
   animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-body {
-  background-color: rgb(39, 0, 94);
-  color: white;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-}
-
 .background-container {
   position: fixed;
   top: 0;
@@ -115,16 +135,19 @@ body {
   z-index: 0;
 }
 
-.stars {
-  background: black
-    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
-  position: absolute;
+.background-container > * {
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  display: block;
   z-index: 0;
+}
+
+.stars {
+  background: black
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+  position: absolute;
+  display: block;
 }
 
 .twinkling {
@@ -135,14 +158,7 @@ body {
     repeat;
   background-size: 1000px 1000px;
   position: absolute;
-  right: 0;
   top: 120px;
-  bottom: 0;
-  z-index: 0;
-  -moz-animation: move-background 70s linear infinite;
-  -ms-animation: move-background 70s linear infinite;
-  -o-animation: move-background 70s linear infinite;
-  -webkit-animation: move-background 70s linear infinite;
   animation: move-background 70s linear infinite;
 }
 
@@ -155,31 +171,19 @@ body {
   flex-wrap: wrap;
   gap: 0.6rem;
   align-items: center;
-  justify-content: space-evenly;
-  background-color: rgb(39, 0, 94);
-  background-image: linear-gradient(rgb(39, 0, 94), rgb(11, 0, 25));
-  font-family: sans-serif;
+  background-color: var(--color-dark-primary);
+  background-image: linear-gradient(var(--color-dark-primary), rgb(11, 0, 25));
   border: 3px solid white;
   border-style: groove;
-  font-size: 1em;
-  border-radius: 8px;
+  border-radius: var(--br-m);
   -webkit-box-reflect: below 1px
-    linear-gradient(transparent, rgba(255, 255, 255, 0.403));
+    linear-gradient(transparent, rgba(255, 255, 255, 0.308));
   text-decoration: none;
-  color: rgb(67, 31, 139);
+  color: var(--color-light-primary);
   text-shadow: none;
   transition: 100ms linear 0s;
   outline: 0 none;
   z-index: 2;
-}
-
-.header:hover {
-  background-color: rgb(67, 31, 139);
-  transition: 130ms;
-  text-shadow: 8px 4px 4px rgba(40, 14, 87, 0.958),
-    12px 4px 4px rgba(40, 14, 87, 0.958), 16px 4px 4px rgba(40, 14, 87, 0.958);
-  color: #fff;
-  text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
 .header > * {
@@ -189,20 +193,18 @@ body {
 }
 
 .minesweeper-header {
-  font-family: 'Press Start 2P', cursive;
+  font-family: var(--ff-primary);
   font-size: 1.5em;
-  border-radius: 8px;
+  border-radius: var(--br-m);
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
   order: 1;
 }
 
 .time-played {
-  font-family: 'Press Start 2P', cursive;
+  font-family: var(--ff-primary);
   margin-bottom: 8px;
-  font-size: 0.8em;
-  /* text-shadow: 4px 1.5px 1.5px rgb(67, 31, 139),
-    8px 1.5px 1.5px rgb(67, 31, 139), 10px 1.5px 1.5px rgb(67, 31, 139); */
+  font-size: var(--fs-m);
   transition: 0.5s;
   height: 1rem;
   border-radius: 10px;
@@ -223,35 +225,34 @@ body {
   order: 0;
 }
 
-/* .stats-container > * {} */
+.header > * {
+  font-family: var(--ff-primary);
+}
 
 .score {
   flex-basis: content;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8em;
+  font-size: var(--fs-m);
   color: aliceblue;
   animation-direction: alternate;
 }
 
 .best-score {
   color: aliceblue;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.6em;
+  font-size: var(--fs-s);
 }
 
 .lives-count {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.6em;
+  font-size: var(--fs-s);
   color: aliceblue;
 }
 
 table {
   position: relative;
-  background-color: rgb(67, 31, 139);
+  background-color: var(--color-light-primary);
   min-width: 40vh;
   height: 40vh;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: var(--br-s);
   border: 3px white;
   border-style: groove;
   transition: 0.5s;
@@ -262,9 +263,13 @@ table {
 }
 
 td {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.7em;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-s);
   font-weight: bold;
+  background-color: rgba(211, 211, 211, 0.439);
+  border: 2px solid rgba(255, 255, 255, 0.509);
+  border-radius: var(--br-s);
+  z-index: 1;
   transition: 0.5s;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
@@ -277,7 +282,7 @@ td {
 }
 
 td:hover {
-  background-color: rgba(67, 31, 139, 0.58);
+  background-color: var(--color-light-secondary);
   cursor: pointer;
 }
 
@@ -285,19 +290,43 @@ td:active {
   cursor: grabbing;
 }
 
-.wall {
-  background-color: rgba(211, 211, 211, 0.439);
-  border: 2px solid rgba(255, 255, 255, 0.509);
-  border-radius: 6px;
-  z-index: 1;
+.bottom-gui-container {
+  margin: auto;
+  margin-top: -75px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  min-height: 80px;
+  max-width: 40vh;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-gui-container > * {
+  z-index: 10;
+  border-radius: var(--br-s);
+  font-family: var(--ff-secondary);
+}
+
+.input-field {
+  animation: td-glow 4s linear infinite;
+  animation-direction: alternate;
+  order: 2;
+}
+
+.player-name {
+  font-weight: bold;
+  order: 5;
 }
 
 button {
   width: 150px;
   height: 50px;
-  border-radius: 6px;
-  background-color: rgb(39, 0, 94);
-  background-image: linear-gradient(rgb(39, 0, 94), rgb(11, 0, 25));
+  border-radius: var(--br-s);
+  background-color: var(--color-dark-primary);
+  background-image: linear-gradient(var(--color-dark-primary), rgb(11, 0, 25));
   border-radius: 10px;
   color: aliceblue;
   border-color: aliceblue;
@@ -307,7 +336,7 @@ button {
 }
 
 button:hover {
-  background-color: rgb(67, 31, 139);
+  background-color: var(--color-light-primary);
   transition: 65ms;
   cursor: pointer;
 }
@@ -324,50 +353,14 @@ button:active {
   order: 4;
 }
 
-.bottom-gui-container {
-  margin: auto;
-  margin-top: -75px;
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  min-height: 80px;
-  max-width: 400px;
-  flex-wrap: wrap;
-  gap: 25px;
-  align-items: center;
-  justify-content: center;
-}
-
-.bottom-gui-container > * {
-  z-index: 10;
-}
-
-.input-field {
-  font-family: 'concert one', cursive;
-  animation: td-glow 4s linear infinite;
-  animation-direction: alternate;
-  order: 2;
-}
-
-.player-name {
-  font-family: 'concert one', cursive;
-  font-weight: bold;
-  order: 5;
-}
-
-label {
-  font-weight: bold;
-  font-family: 'concert one', cursive;
-}
-
 select {
-  font-family: 'concert one', cursive;
+  margin-left: -3px;
+  margin-right: 1px;
   animation: td-glow 4s linear infinite;
   animation-direction: alternate;
 }
 
 option {
-  font-family: 'concert one', cursive;
   font-weight: bold;
   order: 1;
 }
@@ -379,7 +372,7 @@ option {
   }
 
   .minesweeper-header {
-    font-size: 2em;
+    font-size: var(--fs-l);
   }
 }
 
@@ -394,6 +387,10 @@ option {
     width: 50vh;
     height: 50vh;
   }
+
+  td {
+    font-size: var(--fs-m);
+  }
 }
 
 @media (max-width: 618px) {
@@ -401,6 +398,13 @@ option {
     flex-direction: column;
     -webkit-box-reflect: below 0.5px
       linear-gradient(transparent, rgba(255, 255, 255, 0));
+  }
+
+  .header:hover {
+    transition: 130ms;
+    color: #fff;
+
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
   }
 
   .header > * {
@@ -437,12 +441,17 @@ option {
     flex-direction: column;
   }
 
+  select {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .submit-button {
-    order: 3;
+    order: 2;
   }
 
   .restart {
-    order: 4;
+    order: 3;
   }
 
   .player-name {
