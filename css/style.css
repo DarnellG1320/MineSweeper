@@ -2,24 +2,33 @@
   --ff-primary: 'Press Start 2P', cursive;
   --ff-secondary: 'concert one', cursive;
 
-  --fs-m: 0.8em;
   --fs-s: 0.6em;
-  --fs-l: 2em;
+  --fs-m: 0.8em;
+  --fs-l: var(--fs-h1-l);
+  --fs-h1-s: 1.5em;
+  --fs-h1-m: 1.6em;
+  --fs-h1-l: 2em;
 
-  --br-s: 6px;
+  --br-s: 5px;
   --br-m: 8px;
   --br-l: 10px;
+
+  --transition-time-s: 100ms linear 0s;
+  --transition-time-m: 130ms;
+  --transition-time-l: 0.5s;
 
   --color-dark-primary: rgb(39, 0, 94);
   --color-dark-secondary: rgba(40, 14, 87, 0.958);
   --color-light-primary: rgb(67, 31, 139);
   --color-light-secondary: rgba(67, 31, 139, 0.58);
+  --color-selected: rgb(224, 117, 117);
   --shadow1: 8px 1.5px 1.5px var(--color-light-primary),
     12px 1.5px 1.5px var(--color-light-primary),
     16px 1.5px 1.5px var(--color-light-primary);
   --shadow2: 8px 4px 4px var(--color-dark-secondary),
     12px 4px 4px var(--color-dark-secondary),
     16px 4px 4px var(--color-dark-secondary);
+  --shadow-glow-m: -1px 1px 8px #ffc, 1px -1px 8px #fff;
 }
 
 body {
@@ -62,30 +71,44 @@ body {
   }
   100% {
     color: #fff;
-    box-shadow: 8px 8px 8px rgb(255, 255, 255);
+    box-shadow: 6px 6px 6px rgb(255, 255, 255);
   }
 }
 
-@keyframes td-glow {
-  0%,
-  70%,
-  60%,
-  70.1%,
-  60%,
-  65.1%,
-  80%,
-  70.1%,
-  92%,
-  20% {
-    box-shadow: none;
+@keyframes td-rotateZ {
+  0% {
+    transform: rotateZ(0);
+  }
+  86% {
+    transform: rotateZ(0);
+  }
+
+  91% {
+    transform: rotateZ(-11deg);
+  }
+
+  98% {
+    transform: rotateZ(99deg);
+  }
+  99.5% {
+    transform: rotateZ(88deg);
   }
   100% {
-    color: #fff;
-    box-shadow: 3px 3px 3px 3px rgb(255, 255, 255);
+    transform: rotateZ(90deg);
   }
 }
 
-@keyframes float {
+@keyframes td-selected-rotateY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+    text-shadow: var(--shadow-glow-m);
+  }
+}
+
+@keyframes btn-float {
   0% {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
@@ -181,7 +204,7 @@ body {
   text-decoration: none;
   color: var(--color-light-primary);
   text-shadow: none;
-  transition: 100ms linear 0s;
+  transition: var(--transition-time-s);
   outline: 0 none;
   z-index: 2;
 }
@@ -190,11 +213,11 @@ body {
   flex-grow: 1;
   flex-basis: 134px;
   text-align: center;
+  font-family: var(--ff-primary);
 }
 
 .minesweeper-header {
-  font-family: var(--ff-primary);
-  font-size: 1.5em;
+  font-size: var(--fs-h1-m);
   border-radius: var(--br-m);
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
@@ -202,11 +225,11 @@ body {
 }
 
 .time-played {
-  font-family: var(--ff-primary);
-  margin-bottom: 8px;
   font-size: var(--fs-m);
-  transition: 0.5s;
+  margin-bottom: 8px;
+  transition: var(--transition-time-l);
   height: 1rem;
+  min-height: 16px;
   border-radius: 10px;
   color: aliceblue;
   border-color: aliceblue;
@@ -223,10 +246,6 @@ body {
   gap: 10px;
   flex-basis: 150px;
   order: 0;
-}
-
-.header > * {
-  font-family: var(--ff-primary);
 }
 
 .score {
@@ -255,7 +274,6 @@ table {
   border-radius: var(--br-s);
   border: 3px white;
   border-style: groove;
-  transition: 0.5s;
   box-shadow: 6px 6px 6px black;
   margin: auto;
   animation: table-glow 1.6s linear infinite;
@@ -270,9 +288,7 @@ td {
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: var(--br-s);
   z-index: 1;
-  transition: 0.5s;
-  animation: td-glow 4s linear infinite;
-  animation-direction: alternate;
+  animation: td-rotateZ 12s ease-in-out infinite;
   margin: 5px;
   width: 40px;
   max-width: 0px;
@@ -281,8 +297,18 @@ td {
   text-align: center;
 }
 
+.animation-spin {
+  transform-style: preserve-3d;
+  animation: td-selected-rotateY 2s infinite ease-in-out alternate;
+  animation-delay: 0.8s;
+  animation-play-state: running;
+  animation-iteration-count: 2;
+}
+
 td:hover {
+  transition: var(--transition-time-s);
   background-color: var(--color-light-secondary);
+  text-shadow: var(--shadow-glow-m);
   cursor: pointer;
 }
 
@@ -297,7 +323,7 @@ td:active {
   flex-direction: row;
   padding: 0;
   min-height: 80px;
-  max-width: 40vh;
+  max-width: 400px;
   flex-wrap: wrap;
   gap: 25px;
   align-items: center;
@@ -311,12 +337,12 @@ td:active {
 }
 
 .input-field {
-  animation: td-glow 4s linear infinite;
-  animation-direction: alternate;
   order: 2;
 }
 
 .player-name {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-m);
   font-weight: bold;
   order: 5;
 }
@@ -324,21 +350,20 @@ td:active {
 button {
   width: 150px;
   height: 50px;
-  border-radius: var(--br-s);
   background-color: var(--color-dark-primary);
   background-image: linear-gradient(var(--color-dark-primary), rgb(11, 0, 25));
-  border-radius: 10px;
   color: aliceblue;
   border-color: aliceblue;
   font-weight: bold;
   font-size: 1.2em;
-  animation: float 5s ease-in-out infinite;
+  animation: btn-float 5s ease-in-out infinite;
 }
 
 button:hover {
-  background-color: var(--color-light-primary);
-  transition: 65ms;
   cursor: pointer;
+  transition: var(--transition-time-m);
+  color: #fff;
+  text-shadow: var(--shadow-glow);
 }
 
 button:active {
@@ -347,16 +372,20 @@ button:active {
 
 .restart-button {
   order: 3;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-m);
 }
 
 .submit-button {
   order: 4;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-m);
 }
 
 select {
   margin-left: -3px;
   margin-right: 1px;
-  animation: td-glow 4s linear infinite;
+  /* animation: td-glow 8s linear infinite; */
   animation-direction: alternate;
 }
 
@@ -372,7 +401,7 @@ option {
   }
 
   .minesweeper-header {
-    font-size: var(--fs-l);
+    font-size: var(--fs-h1-l);
   }
 }
 
@@ -384,8 +413,8 @@ option {
 
 @media (min-width: 692px) {
   table {
-    width: 50vh;
-    height: 50vh;
+    width: 45vh;
+    height: 45vh;
   }
 
   td {
@@ -398,13 +427,15 @@ option {
     flex-direction: column;
     -webkit-box-reflect: below 0.5px
       linear-gradient(transparent, rgba(255, 255, 255, 0));
+    height: 150px;
+    gap: 0.4rem;
   }
 
   .header:hover {
-    transition: 130ms;
+    transition: var(--transition-time-m);
     color: #fff;
 
-    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+    text-shadow: var(--shadow-glow);
   }
 
   .header > * {
@@ -418,7 +449,7 @@ option {
 
   .minesweeper-header {
     order: 0;
-    font-size: 1.6em;
+    font-size: var(--fs-h1-m);
   }
 
   table {
@@ -431,6 +462,11 @@ option {
 }
 
 @media (max-width: 488px) {
+  .header {
+    flex-wrap: nowrap;
+    height: 176px;
+    gap: 0.6rem;
+  }
   .stats-container {
     flex-direction: column;
     gap: 10px;
@@ -459,7 +495,7 @@ option {
   }
 }
 
-@media (max-width: 408px) {
+@media (max-width: 414px) {
   table {
     min-width: 30vh;
     height: 30vh;

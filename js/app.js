@@ -3,6 +3,24 @@
 const TILE = 'TILE';
 
 var BOMB = ' ';
+// var gGameStats = {
+//   TotalTilesCount: 0,
+//   CellClicked: false,
+//   IsFirstClick: true,
+//   isGameLost: false,
+//   IsGamePlaying: false,
+//   LivesCount: 3,
+//   BestScore: 0,
+//   coreToWin: 0,
+
+//   TotalBombCount: 2,
+//   SIZE: 8,
+//   IntervalId: null,
+//   ElSelectedCell,
+//   IsRightClick: false,
+//   GameScore: 0,
+//   Board,
+// };
 
 var gTotalTilesCount = 0;
 var gCellClicked = false;
@@ -20,8 +38,6 @@ var gElSelectedCell;
 var gIsRightClick = false;
 var gGameScore = 0;
 var gBoard;
-
-//  ****** right click cancel default menu *****
 
 window.oncontextmenu = function () {
   return false;
@@ -208,7 +224,10 @@ function hideTiles(board) {
 }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
-  if (elCell.innerText) return;
+  if (elCell.innerText) {
+    elCell.classList.add('animation-spin');
+    return;
+  } else if (elCell.classList.contains('animation-spin')) return;
   else var currCell = gBoard[i][j];
 
   var currCellElement = gBoard[i][j].gameElement;
@@ -217,6 +236,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     elCell.innerText = '🇧🇦';
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
     elCell.classList.add('scale-down-center');
+
     renderBoard();
     checkWin();
     return;
@@ -267,6 +287,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (gBoard[i][j].gameElement !== BOMB) updateScore(1);
 
   elCell.classList.add('selected');
+
   gElSelectedCell = elCell;
 
   if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
@@ -281,6 +302,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
 
     //********** Game Lost EVENTS *********
   }
+
   if (gLivesCount === 0) {
     checkIfBest(gGameScore);
     gisGameLost = true;
