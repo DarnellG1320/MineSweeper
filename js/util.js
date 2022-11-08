@@ -1,15 +1,3 @@
-function createMat(ROWS, COLS) {
-  var mat = [];
-  for (var i = 0; i < ROWS; i++) {
-    var row = [];
-    for (var j = 0; j < COLS; j++) {
-      row.push('');
-    }
-    mat.push(row);
-  }
-  return mat;
-}
-
 // function getEmptyPos() {
 //   var possibleCells = [];
 //   for (var i = 0; i < gBoard.length; i++) {
@@ -66,6 +54,26 @@ function updateScore(score) {
   gGameScore += score;
 
   document.querySelector('h2 span').innerText = gGameScore;
+}
+
+function getMinePositions(numberOfMines) {
+  const positions = [];
+
+  while (positions.length < numberOfMines) {
+    const position = {
+      i: getRandomInt(0, SIZE),
+      j: getRandomInt(0, SIZE),
+    };
+    if (!positions.some(positionMatch.bind(null, position))) {
+      positions.push(position);
+    }
+  }
+
+  return positions;
+}
+
+function positionMatch(a, b) {
+  return a.i === b.i && a.j === b.j;
 }
 
 function countBombsAround(board, rowIdx, colIdx) {

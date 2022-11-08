@@ -22,13 +22,18 @@
   --color-light-primary: rgb(67, 31, 139);
   --color-light-secondary: rgba(67, 31, 139, 0.58);
   --color-selected: rgb(224, 117, 117);
-  --shadow1: 8px 1.5px 1.5px var(--color-light-primary),
+  --shadow-primary: 8px 1.5px 1.5px var(--color-light-primary),
     12px 1.5px 1.5px var(--color-light-primary),
     16px 1.5px 1.5px var(--color-light-primary);
-  --shadow2: 8px 4px 4px var(--color-dark-secondary),
+  --shadow-secondary: 8px 4px 4px var(--color-dark-secondary),
     12px 4px 4px var(--color-dark-secondary),
     16px 4px 4px var(--color-dark-secondary);
   --shadow-glow-m: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+
+  --lin-grade-primary: linear-gradient(
+    var(--color-dark-primary),
+    rgb(11, 0, 25)
+  );
 }
 
 body {
@@ -44,15 +49,14 @@ body {
   0%,
   70%,
   60%,
-  20.1%,
-  65.1%,
+  20%,
+  65%,
   60%,
   10% {
-    text-shadow: var(--shadow1);
   }
   100% {
     color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 2px rgb(255, 255, 255);
+    /* text-shadow: 0px 1.5px 1.5px rgb(255, 255, 255); */
   }
 }
 
@@ -60,11 +64,11 @@ body {
   0%,
   70%,
   60%,
-  20.1%,
+  20%,
   60%,
-  65.1%,
+  65%,
   30%,
-  50.1%,
+  50%,
   60%,
   20% {
     box-shadow: none;
@@ -87,12 +91,16 @@ body {
     transform: rotateZ(-11deg);
   }
 
-  98% {
+  97% {
     transform: rotateZ(99deg);
   }
-  99.5% {
+  98% {
     transform: rotateZ(88deg);
   }
+  99% {
+    transform: rotateZ(91deg);
+  }
+
   100% {
     transform: rotateZ(90deg);
   }
@@ -113,7 +121,7 @@ body {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
   }
-  50% {
+  55% {
     box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.4);
     transform: translatey(-15px);
   }
@@ -123,7 +131,7 @@ body {
   }
 }
 
-@keyframes scale-down-center {
+@keyframes animation-scale-down {
   0% {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
@@ -143,10 +151,18 @@ body {
   }
 }
 
-.scale-down-center {
-  -webkit-animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
-  animation: scale-down-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+.animation-scale-down {
+  -webkit-animation: animation-scale-down 0.2s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: animation-scale-down 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animation-spin {
+  transform-style: preserve-3d;
+  animation: td-selected-rotateY 2s infinite ease-in-out alternate;
+  animation-delay: 0.8s;
+  animation-play-state: running;
+  animation-iteration-count: 2;
 }
 
 .background-container {
@@ -194,8 +210,7 @@ body {
   flex-wrap: wrap;
   gap: 0.6rem;
   align-items: center;
-  background-color: var(--color-dark-primary);
-  background-image: linear-gradient(var(--color-dark-primary), rgb(11, 0, 25));
+  background-image: var(--lin-grade-primary);
   border: 3px solid white;
   border-style: groove;
   border-radius: var(--br-m);
@@ -219,6 +234,7 @@ body {
 .minesweeper-header {
   font-size: var(--fs-h1-m);
   border-radius: var(--br-m);
+  text-shadow: var(--shadow-primary);
   animation: MineSweep 2s ease 0s infinite alternate forwards;
   animation-direction: alternate;
   order: 1;
@@ -288,21 +304,13 @@ td {
   border: 2px solid rgba(255, 255, 255, 0.509);
   border-radius: var(--br-s);
   z-index: 1;
-  animation: td-rotateZ 12s ease-in-out infinite;
+  animation: td-rotateZ 13s ease-in-out infinite;
   margin: 5px;
   width: 40px;
   max-width: 0px;
   height: 15px;
   max-height: 20px;
   text-align: center;
-}
-
-.animation-spin {
-  transform-style: preserve-3d;
-  animation: td-selected-rotateY 2s infinite ease-in-out alternate;
-  animation-delay: 0.8s;
-  animation-play-state: running;
-  animation-iteration-count: 2;
 }
 
 td:hover {
@@ -314,6 +322,12 @@ td:hover {
 
 td:active {
   cursor: grabbing;
+}
+
+.HIDDEN {
+  /* background-color: rgba(211, 211, 211, 0.439); */
+  width: 50px;
+  height: 50px;
 }
 
 .bottom-gui-container {
@@ -347,11 +361,14 @@ td:active {
   order: 5;
 }
 
+.player-name:hover {
+  text-shadow: var(--shadow-glow-m);
+}
+
 button {
   width: 150px;
   height: 50px;
-  background-color: var(--color-dark-primary);
-  background-image: linear-gradient(var(--color-dark-primary), rgb(11, 0, 25));
+  background-image: var(--lin-grade-primary);
   color: aliceblue;
   border-color: aliceblue;
   font-weight: bold;
@@ -363,7 +380,7 @@ button:hover {
   cursor: pointer;
   transition: var(--transition-time-m);
   color: #fff;
-  text-shadow: var(--shadow-glow);
+  text-shadow: var(--shadow-glow-m);
 }
 
 button:active {
@@ -435,7 +452,7 @@ option {
     transition: var(--transition-time-m);
     color: #fff;
 
-    text-shadow: var(--shadow-glow);
+    text-shadow: var(--shadow-glow-m);
   }
 
   .header > * {

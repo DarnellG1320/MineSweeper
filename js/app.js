@@ -1,8 +1,7 @@
 'use strict';
 
-const TILE = 'TILE';
-
 var BOMB = ' ';
+
 // var gGameStats = {
 //   TotalTilesCount: 0,
 //   CellClicked: false,
@@ -21,6 +20,8 @@ var BOMB = ' ';
 //   GameScore: 0,
 //   Board,
 // };
+
+// console.log('gGameStats: ', gGameStats);
 
 var gTotalTilesCount = 0;
 var gCellClicked = false;
@@ -42,6 +43,19 @@ var gBoard;
 window.oncontextmenu = function () {
   return false;
 };
+
+// prettier-ignore
+// import { createMat } from "./createboard.js";
+
+const board = createMat(SIZE, SIZE);
+console.log('board: ', board);
+const boardElement = document.querySelector('.board');
+
+board.forEach((row) => {
+  row.forEach((tile) => {
+    boardElement.append(tile.element);
+  });
+});
 
 //**** Local Storage name and best score *****
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
@@ -67,6 +81,13 @@ elSubmitButton.onclick = function () {
   elPlayerName.innerHTML += `${'Player Name'}: ${key}`;
   // console.log(localStorage);
 };
+
+window.addEventListener('drag', (event) => {
+  elBestScore.classList.add('animation-spin');
+  elBestScore.classList.add('selected');
+  elPlayerName.classList.add('animation-spin');
+  elPlayerName.classList.add('selected');
+});
 
 function changeFunc() {
   var selectBox = document.getElementById('select-box');
@@ -95,39 +116,9 @@ function initGame(SIZE) {
 
   renderBoard(gBoard);
   // scoreToWin = calculateTileAmt()
-  hideTiles(gBoard);
+  // hideTiles(gBoard);
 
   clearInterval(gIntervalId);
-}
-
-function buildBoard() {
-  clearInterval(gIntervalId);
-  var board = [];
-
-  // Create the Matrix
-  board = createMat(SIZE, SIZE);
-
-  for (var i = 0; i < board.length; i++) {
-    for (var j = 0; j < board[i].length; j++) {
-      board[i][j] = { i, j, gameElement: null, bombCount: null };
-      gTotalTilesCount++;
-    }
-  }
-
-  var totalBOMBCount = convertSizeToBombAmt(SIZE);
-
-  for (var k = 0; k < totalBOMBCount; k++) {
-    board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
-  }
-  for (var i = 0; i < board.length; i++) {
-    for (var j = 0; j < board[i].length; j++) {
-      var currCellBombsCount = countBombsAround(board, i, j);
-
-      board[i][j].bombCount = currCellBombsCount;
-    }
-  }
-
-  return board;
 }
 
 function convertSizeToBombAmt(SIZE) {
@@ -137,38 +128,6 @@ function convertSizeToBombAmt(SIZE) {
   else if (SIZE === 16) SIZE = 64;
 
   return SIZE;
-}
-
-function renderBoard(board) {
-  var elBoard = document.querySelector('.board');
-  var strHTML = '';
-  var isTrue = true;
-  var isFalse = false;
-
-  for (var i = 0; i < board.length; i++) {
-    strHTML += '<tr>\n';
-
-    for (var j = 0; j < board[0].length; j++) {
-      var currCell = board[i][j];
-
-      var cellClass = getClassName({ i, j });
-
-      //prettier-ignore
-      strHTML += `\t<td class="cell ${cellClass}" 
-      onclick="cellClicked( this, event, ${i}, ${j},${isFalse})" oncontextmenu="cellClicked(this, event, ${i}, ${j},${isTrue})">`;
-
-      if (currCell.gameElement === '💣' && gisGameLost) {
-        strHTML += '💣';
-      }
-
-      strHTML += '\t</td>\n';
-    }
-    strHTML += '</tr>\n';
-  }
-
-  // console.log('strHTML is:');
-  // console.log(strHTML);
-  elBoard.innerHTML = strHTML;
 }
 
 function showBombs(board) {
@@ -213,15 +172,15 @@ function checkIfBest() {
   elBestScore.innerHTML += `${'Best Score'}: ${gGameScore}`;
 }
 
-function hideTiles(board) {
-  for (var i = 0; i < board.length; i++) {
-    for (var j = 0; j < board[0].length; j++) {
-      var currCell = board[i][j];
+// function hideTiles(board) {
+//   for (var i = 0; i < board.length; i++) {
+//     for (var j = 0; j < board[0].length; j++) {
+//       var currCell = board[i][j];
 
-      if (currCell.status === 'hidden') return;
-    }
-  }
-}
+//       if (currCell.status === 'hidden') return;
+//     }
+//   }
+// }
 
 function cellClicked(elCell, event, i, j, isRightClick) {
   if (elCell.innerText) {
@@ -235,7 +194,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (isRightClick && currCellElement === ' ') {
     elCell.innerText = '🇧🇦';
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
-    elCell.classList.add('scale-down-center');
+    elCell.classList.add('animation-scale-down');
 
     renderBoard();
     checkWin();
@@ -258,7 +217,7 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     gIsGamePlaying = true;
   } else if (gisGameLost) return;
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
-  elCell.classList.add('scale-down-center');
+  elCell.classList.add('animation-scale-down');
 
   var BombCount = countBombsAround(gBoard, i, j);
   // console.log('BOMBCount: ', BOMBCount);
