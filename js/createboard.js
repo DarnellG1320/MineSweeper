@@ -7,7 +7,22 @@ const TILE_STATUS = {
   MARKED: 'marked',
 };
 
+const board = createMat(SIZE, SIZE);
 var elBoard = document.querySelector('.board');
+
+// const minesLeftText = document.querySelector('[data-mine-count]');
+// const messageText = document.querySelector('.subtext');
+
+// board.forEach((row) => {
+//   row.forEach((tile) => {
+//     boardElement.append(tile.element);
+//     tile.element.addEventListener('click', () => {
+//       console.log('Yo');
+//       revealTile(board, tile);
+//       checkGameEnd();
+//     });
+//   });
+// });
 
 function createMat(ROWS, COLS) {
   var mat = [];
@@ -26,12 +41,12 @@ function createMat(ROWS, COLS) {
         mine: minesPositions.some(positionMatch.bind(null, { i, j })),
         gameElement: null,
         bombCount: null,
-        get status() {
-          return element.dataset.status;
-        },
-        set status(value) {
-          this.element.dataset.status = value;
-        },
+        // get status() {
+        //   return element.dataset.status;
+        // },
+        // set status(value) {
+        //   this.element.dataset.status = value;
+        // },
       };
       row.push(tile);
       gTotalTilesCount++;
@@ -42,10 +57,10 @@ function createMat(ROWS, COLS) {
 }
 
 function buildBoard() {
-  var board = [];
   var totalBombCount = convertSizeToBombAmt(SIZE);
 
-  board = createMat(SIZE, SIZE);
+  //   board = createMat(SIZE, SIZE);
+  //   console.log('board: ', board);
 
   for (var k = 0; k < totalBombCount; k++) {
     board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
@@ -84,8 +99,5 @@ function renderBoard(board) {
     }
     strHTML += '</tr>\n';
   }
-
-  // console.log('strHTML is:');
-  // console.log(strHTML);
   elBoard.innerHTML = strHTML;
 }

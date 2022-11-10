@@ -47,15 +47,13 @@ window.oncontextmenu = function () {
 // prettier-ignore
 // import { createMat } from "./createboard.js";
 
-const board = createMat(SIZE, SIZE);
-console.log('board: ', board);
-const boardElement = document.querySelector('.board');
+// const boardElement = document.querySelector('.board');
 
-board.forEach((row) => {
-  row.forEach((tile) => {
-    boardElement.append(tile.element);
-  });
-});
+// boardElement.forEach((row) => {
+//   row.forEach((tile) => {
+//     boardElement.append(tile.element);
+//   });
+// });
 
 //**** Local Storage name and best score *****
 var storedBestScore = localStorage.getItem('Best Score', gGameScore);
@@ -84,9 +82,7 @@ elSubmitButton.onclick = function () {
 
 window.addEventListener('drag', (event) => {
   elBestScore.classList.add('animation-spin');
-  elBestScore.classList.add('selected');
   elPlayerName.classList.add('animation-spin');
-  elPlayerName.classList.add('selected');
 });
 
 function changeFunc() {
@@ -188,10 +184,12 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     return;
   } else if (elCell.classList.contains('animation-spin')) return;
   else var currCell = gBoard[i][j];
+  console.log('currCell.mine: ', currCell.mine);
 
   var currCellElement = gBoard[i][j].gameElement;
+  // console.log('currCellElement: ', currCellElement);
 
-  if (isRightClick && currCellElement === ' ') {
+  if (isRightClick && currCell.mine) {
     elCell.innerText = '🇧🇦';
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
     elCell.classList.add('animation-scale-down');
@@ -219,41 +217,40 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   elCell.style.backgroundColor = 'rgb(224, 117, 117)';
   elCell.classList.add('animation-scale-down');
 
-  var BombCount = countBombsAround(gBoard, i, j);
+  var bombCount = countBombsAround(gBoard, i, j);
+
+  if (bombCount === 0) {
+    elCell.classList.add('animation-spin');
+    updateScore(1);
+    return;
+  }
   // console.log('BOMBCount: ', BOMBCount);
 
-  //***** showZeros not working yet *******
-  if (gBoard[i][j].gameElement !== BOMB) {
-    elCell.innerText = BombCount;
-    showZeros(gBoard);
-    // updateScore(1);
-  }
+  if (!currCell.mine) {
+    elCell.innerText = bombCount;
+    // showZeros(gBoard);
+    updateScore(1);
+    var iAndJ = {
+      i: i,
+      j: j,
+    };
 
-  for (var k = 0; k < SIZE; k++) {
-    for (var p = 0; p < SIZE; p++) {
-      if (gBoard[i][j].gameElement === BOMB && gBoard[i][j].bombCount === 0)
-        elCell.innerText = BombCount;
-    }
+    // revealTile(gBoard, currCell);
   }
 
   /// ***** remove hidden *******
 
   gCellClicked = !gCellClicked;
-  // if (gBoard[i][j].status === 'HIDDEN')
-  // if (gBoard[i][j].status === 'marked') return;
-  // if (gBoard[i][j].status !== 'marked')
-  //   gBoard[i][j].status = 'marked';
-  if (gBoard[i][j].gameElement !== BOMB) updateScore(1);
 
   elCell.classList.add('selected');
 
   gElSelectedCell = elCell;
 
-  if (!isRightClick && isFirstClick && currCell.gameElement === ' ') {
+  if (!isRightClick && isFirstClick && currCell.mine) {
     elCell.innerText = '🎂';
     isFirstClick = false;
     updateScore(1);
-  } else if (!isRightClick && currCell.gameElement === ' ') {
+  } else if (!isRightClick && currCell.mine) {
     elCell.innerText = '💣';
     gLivesCount--;
     renderLives();

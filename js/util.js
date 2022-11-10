@@ -87,30 +87,11 @@ function countBombsAround(board, rowIdx, colIdx) {
       if (i === rowIdx && j === colIdx) continue;
 
       var currCell = board[i][j];
-      if (currCell.gameElement === BOMB) BombCount++;
+      if (currCell.mine) BombCount++;
     }
   }
   return BombCount;
 }
-
-// function countZerosAround(board, rowIdx, colIdx) {
-
-//   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-//     if (i < 0 || i >= SIZE) continue;
-
-//     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-//       if (j < 0 || j >= SIZE) continue;
-//       if (i === rowIdx && j === colIdx) continue;
-
-//       var currZeroCell = board[i][j];
-//        currZeroCellArr.push(currZeroCell)
-
-//       console.log('currCell: ', currCell);
-//       if (currZeroCell.gameElement !== BOMB) BOMBCount++;
-//     }
-//   }
-//   return currZeroCellArr;
-// }
 
 function markCells(coords) {
   // query select them one by one and add mark
@@ -147,4 +128,41 @@ function calculateTileAmt() {
   tilesSum = gTotalTilesCount - gTotalBombCount;
   console.log('tilesSum: ', tilesSum);
   return tilesSum;
+}
+
+function revealTile(board, tile) {
+  //   console.log('Yo');
+  //   if (board[i][j]) {
+  //     return;
+  //   }
+
+  if (tile.mine) {
+    // tile.status = TILE_STATUSES.MINE;
+    console.log('Hello');
+    return;
+  }
+  //   tile.status = TILE_STATUSES.NUMBER;
+  const adjacentTiles = nearbyTiles(board, tile);
+  console.log('adjacentTiles: ', adjacentTiles);
+  const mines = adjacentTiles.filter((t) => t.mine);
+  console.log('mines: ', mines);
+  if (mines.length === 0) {
+    adjacentTiles.forEach(revealTile.bind(null, board));
+  } else {
+    // tile.element.textContent = mines.length;
+  }
+  console.log('adjacentTiles: ', adjacentTiles);
+}
+
+function nearbyTiles(board, { x, y }) {
+  const tiles = [];
+
+  for (let xOffset = -1; xOffset <= 1; xOffset++) {
+    for (let yOffset = -1; yOffset <= 1; yOffset++) {
+      const tile = board[x + xOffset]?.[y + yOffset];
+      if (tile) tiles.push(tile);
+    }
+  }
+
+  return tiles;
 }
