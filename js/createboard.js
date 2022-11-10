@@ -7,7 +7,7 @@ const TILE_STATUS = {
   MARKED: 'marked',
 };
 
-const board = createMat(SIZE, SIZE);
+// const board = createMat(SIZE, SIZE);
 var elBoard = document.querySelector('.board');
 
 // const minesLeftText = document.querySelector('[data-mine-count]');
@@ -17,7 +17,7 @@ var elBoard = document.querySelector('.board');
 //   row.forEach((tile) => {
 //     boardElement.append(tile.element);
 //     tile.element.addEventListener('click', () => {
-//       console.log('Yo');
+//
 //       revealTile(board, tile);
 //       checkGameEnd();
 //     });
@@ -26,8 +26,13 @@ var elBoard = document.querySelector('.board');
 
 function createMat(ROWS, COLS) {
   var mat = [];
-  const minesPositions = getMinePositions(SIZE, convertSizeToBombAmt(SIZE));
-  console.log('minesPos: ', minesPositions);
+  totalBombCount = convertSizeToBombAmt(COLS);
+
+  const minesPositions = getMinePositions(
+    totalBombCount,
+    convertSizeToBombAmt(totalBombCount)
+  );
+
   for (var i = 0; i < ROWS; i++) {
     var row = [];
     for (var j = 0; j < COLS; j++) {
@@ -41,6 +46,7 @@ function createMat(ROWS, COLS) {
         mine: minesPositions.some(positionMatch.bind(null, { i, j })),
         gameElement: null,
         bombCount: null,
+        isSelected: false,
         // get status() {
         //   return element.dataset.status;
         // },
@@ -58,18 +64,19 @@ function createMat(ROWS, COLS) {
 
 function buildBoard() {
   var totalBombCount = convertSizeToBombAmt(SIZE);
-
-  //   board = createMat(SIZE, SIZE);
-  //   console.log('board: ', board);
+  gTotalBombCount = totalBombCount;
+  board = createMat(SIZE, SIZE);
+  //
 
   for (var k = 0; k < totalBombCount; k++) {
-    board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
+    // board[getRandomInt(0, SIZE)][getRandomInt(0, SIZE)].gameElement = BOMB;
   }
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
       var currCellBombsCount = countBombsAround(board, i, j);
 
       board[i][j].bombCount = currCellBombsCount;
+      //
     }
   }
 

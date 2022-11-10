@@ -12,6 +12,16 @@
 // }
 
 // Returns the class name for a specific cell
+
+// function convertSizeToBombAmt(SIZE) {
+//   if (SIZE === 4) SIZE = 2;
+//   else if (SIZE === 8) SIZE = 14;
+//   else if (SIZE === 12) SIZE = 32;
+//   else if (SIZE === 16) SIZE = 64;
+
+//   return SIZE;
+// }
+
 function getClassName(location) {
   var cellClass = 'cell-' + location.i + '-' + location.j;
   return cellClass;
@@ -74,23 +84,6 @@ function getMinePositions(numberOfMines) {
 
 function positionMatch(a, b) {
   return a.i === b.i && a.j === b.j;
-}
-
-function countBombsAround(board, rowIdx, colIdx) {
-  var BombCount = 0;
-
-  for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-    if (i < 0 || i >= SIZE) continue;
-
-    for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-      if (j < 0 || j >= SIZE) continue;
-      if (i === rowIdx && j === colIdx) continue;
-
-      var currCell = board[i][j];
-      if (currCell.mine) BombCount++;
-    }
-  }
-  return BombCount;
 }
 
 function markCells(coords) {
