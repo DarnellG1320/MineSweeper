@@ -115,19 +115,6 @@ body {
   }
 }
 
-/* @keyframes header-bg-rotateZ {
-  0% {
-    background-image: var(--lin-grade-primary);
-  }
-  50% {
-    background-image: var(--lin-grade-third);
-  }
-
-  100% {
-    background-image: var(--lin-grade-secondary);
-  }
-} */
-
 @keyframes btn-float {
   0% {
     transform: translatey(0px);

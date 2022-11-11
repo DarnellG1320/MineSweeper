@@ -1,14 +1,4 @@
-const TILE = 'TILE';
-
-const TILE_STATUS = {
-  HIDDEN: 'hidden',
-  MINE: 'mine',
-  NUMBER: 'number',
-  MARKED: 'marked',
-};
-
 // const board = createMat(SIZE, SIZE);
-var elBoard = document.querySelector('.board');
 
 // const minesLeftText = document.querySelector('[data-mine-count]');
 // const messageText = document.querySelector('.subtext');
@@ -47,12 +37,6 @@ function createMat(ROWS, COLS) {
         gameElement: null,
         bombCount: null,
         isSelected: false,
-        // get status() {
-        //   return element.dataset.status;
-        // },
-        // set status(value) {
-        //   this.element.dataset.status = value;
-        // },
       };
       row.push(tile);
       gTotalTilesCount++;
@@ -84,6 +68,7 @@ function buildBoard() {
 }
 
 function renderBoard(board) {
+  var elBoard = document.querySelector('.board');
   var strHTML = '';
   var isTrue = true;
   var isFalse = false;
@@ -94,11 +79,12 @@ function renderBoard(board) {
     for (var j = 0; j < board[0].length; j++) {
       var currCell = board[i][j];
       var cellClass = getClassName({ i, j });
+
       //prettier-ignore
       strHTML += `\t<td class="cell ${cellClass}" draggable="true"
         onclick="cellClicked( this, event, ${i}, ${j},${isFalse})" oncontextmenu="cellClicked(this, event, ${i}, ${j},${isTrue})">`;
 
-      if (currCell.gameElement === '💣' && gLivesCount === 0) {
+      if (currCell.mine && gLivesCount === 0) {
         strHTML += '💣';
       }
 

@@ -21,6 +21,15 @@
 
 //
 
+const TILE = 'TILE';
+
+const TILE_STATUS = {
+  HIDDEN: 'hidden',
+  MINE: 'mine',
+  NUMBER: 'number',
+  MARKED: 'marked',
+};
+
 var BOMB = ' ';
 
 var gTotalTilesCount = 0;
@@ -44,30 +53,18 @@ window.oncontextmenu = function () {
   return false;
 };
 
-// prettier-ignore
-// import { createMat } from "./createboard.js";
-
-// const boardElement = document.querySelector('.board');
-
-// boardElement.forEach((row) => {
-//   row.forEach((tile) => {
-//     boardElement.append(tile.element);
-//   });
-// });
-
 //**** Local Storage name and best score *****
-var storedBestScore = localStorage.getItem('Best Score', gGameScore);
 var elBestScore = document.getElementById('best-score');
-
-elBestScore.innerHTML = null;
-elBestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
-var key = localStorage.getItem('Name', key);
-// **** DOM name field and input field ****
-
 var elInputField = document.getElementById('input-field');
 var elSubmitButton = document.getElementById('submit-button');
 var elPlayerName = document.getElementById('player-name');
 
+var storedBestScore = localStorage.getItem('Best Score', gGameScore);
+elBestScore.innerHTML = null;
+elBestScore.innerHTML += `${'Best Score'}: ${storedBestScore}`;
+var key = localStorage.getItem('Name', key);
+
+// **** DOM name field and input field ****
 elPlayerName.innerHTML += `${'Player Name'}: ${key}`;
 elSubmitButton.onclick = function () {
   var key = elInputField.value;
@@ -77,7 +74,6 @@ elSubmitButton.onclick = function () {
   }
   elPlayerName.innerHTML = null;
   elPlayerName.innerHTML += `${'Player Name'}: ${key}`;
-  //
 };
 
 window.addEventListener('drag', (event) => {
@@ -108,14 +104,8 @@ function initGame(SIZE) {
   gIsFirstClick = true;
   gisGameLost = false;
   gIsGamePlaying = false;
-
   gBoard = buildBoard(SIZE);
-
   renderBoard(gBoard);
-  console.log('gBoard: ', gBoard);
-  // scoreToWin = calculateTileAmt()
-  // hideTiles(gBoard);
-
   clearInterval(gIntervalId);
 }
 
@@ -130,7 +120,7 @@ function convertSizeToBombAmt(SIZE) {
 
 function countBombsAround(board, rowIdx, colIdx) {
   var BombCount = 0;
-
+  var noBombsAroundPosArr = [];
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
     if (i < 0 || i >= SIZE) continue;
 
@@ -140,41 +130,12 @@ function countBombsAround(board, rowIdx, colIdx) {
 
       var currCell = board[i][j];
 
-      if (currCell.mine) BombCount++;
+      if (currCell.mine ? BombCount++ : noBombsAroundPosArr.push(currCell));
     }
   }
   return BombCount;
 }
 
-function showBombs(board, elCell) {
-  var currCell;
-
-  for (var i = 0; i < SIZE; i++) {
-    for (var j = 0; j < SIZE; j++) {
-      currCell = board[i][j];
-
-      if (currCell.mine) {
-        currCell.gameElement = '💣';
-        elCell.style.backgroundColor = 'rgb(224, 117, 117)';
-      }
-    }
-  }
-}
-
-function showZeros(board, elCell) {
-  var currCell;
-
-  for (var i = 0; i < SIZE; i++) {
-    for (var j = 0; j < SIZE; j++) {
-      currCell = board[i][j];
-      //
-
-      if (currCell.bombCount === 0 && !currCell.isSelected) {
-        currCell.isSelected = !currCell.isSelected;
-      }
-    }
-  }
-}
 function checkWin() {
   if (gGameScore !== gTotalTilesCount) {
     checkIfBest(gGameScore);
@@ -190,16 +151,6 @@ function checkIfBest() {
   elBestScore.innerHTML += `${'Best Score'}: ${gGameScore}`;
 }
 
-// function hideTiles(board) {
-//   for (var i = 0; i < board.length; i++) {
-//     for (var j = 0; j < board[0].length; j++) {
-//       var currCell = board[i][j];
-
-//       if (currCell.status === 'hidden') return;
-//     }
-//   }
-// }
-
 function cellClicked(elCell, event, i, j, isRightClick) {
   elCell.classList.add('animation-scale-down');
   if (elCell.innerText) {
@@ -212,10 +163,8 @@ function cellClicked(elCell, event, i, j, isRightClick) {
   if (isRightClick && currCell.mine) {
     elCell.innerText = '🇧🇦';
     elCell.style.backgroundColor = 'rgb(224, 117, 117)';
-    // elCell.classList.add('animation-scale-down');
-
-    renderBoard(gBoard);
     checkWin();
+    winOrLoseEvents(elCell);
     return;
   }
 
@@ -240,8 +189,13 @@ function cellClicked(elCell, event, i, j, isRightClick) {
 
   var bombCount = countBombsAround(gBoard, i, j);
 
-  if (bombCount === 0) {
+  if (bombCount === 0 && !isRightClick) {
     elCell.classList.add('animation-spin');
+    var newI = i + 1;
+    var newJ = j + 1;
+
+    cellClicked(elCell, event, newI, newJ, isRightClick);
+
     updateScore(1);
     return;
   }
@@ -251,20 +205,9 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     elCell.innerText = bombCount;
     // showZeros(gBoard);
     updateScore(1);
-    var iAndJ = {
-      i: i,
-      j: j,
-    };
-
-    // revealTile(gBoard, currCell);
   }
-
-  /// ***** remove hidden *******
-
   gCellClicked = !gCellClicked;
-
   elCell.classList.add('selected');
-
   gElSelectedCell = elCell;
 
   if (!isRightClick && isFirstClick && currCell.mine) {
@@ -276,22 +219,19 @@ function cellClicked(elCell, event, i, j, isRightClick) {
     gLivesCount--;
     renderLives();
     checkIfBest(gGameScore);
-
-    //********** Game Lost EVENTS *********
   }
+  winOrLoseEvents(elCell);
+}
 
+function winOrLoseEvents(elCell) {
   if (gLivesCount === 0) {
     checkIfBest(gGameScore);
     gisGameLost = true;
     gIsGamePlaying = false;
-    showBombs(gBoard, elCell);
+    // showBombs(gBoard, elCell);
     // showZeros(gBoard, elCell);
     clearInterval(gIntervalId);
     renderLives();
     renderBoard(gBoard);
-    alert('Game Over');
   }
-  var cellCoord = getCellCoord(elCell.id);
-  markCells(cellCoord);
-  return true;
 }
